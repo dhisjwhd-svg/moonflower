@@ -1,2 +1,51 @@
-
-<doctype> hi</doctype>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09090d">
+<title>Moon Junz</title>
+<style>
+:root{color-scheme:dark;--bg:#09090d;--panel:#111117;--line:#ffffff15;--muted:#aaa9b6;--pink:#f0b9d5}
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--bg)}
+body{margin:0;min-height:100vh;padding:clamp(16px,4vw,44px);display:grid;place-items:center;background:radial-gradient(ellipse at 50% -10%,#392335 0,transparent 54%),#09090d;color:#f5f3f7;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.profile{width:min(100%,720px);overflow:hidden;border:1px solid var(--line);border-radius:24px;background:rgba(17,17,23,.94);box-shadow:0 24px 90px #0008}
+.banner{height:clamp(150px,30vw,245px);position:relative;background:#19131b;overflow:hidden}
+.banner img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.banner:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#111117 0,transparent 56%)}
+.content{padding:0 clamp(20px,5vw,38px) 32px}
+.identity{display:flex;align-items:flex-end;gap:18px;position:relative;margin-top:-62px;z-index:1}
+.avatar{width:118px;height:118px;flex:0 0 118px;border-radius:50%;padding:5px;background:#111117;border:1px solid #ffffff2b;box-shadow:0 8px 26px #0007}
+.avatar img{width:100%;height:100%;display:block;object-fit:cover;border-radius:50%}
+.name{padding-bottom:8px;min-width:0}
+.name h1{font-size:clamp(1.45rem,4vw,2rem);line-height:1.1;letter-spacing:-.045em;margin:0;font-weight:750}
+.handle{margin:7px 0 0;color:var(--muted);font-size:.9rem}
+.bio{margin:26px 0 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.98rem;line-height:1.8;color:#d6d3dd}
+.bio strong{color:#fff}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.link{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border:1px solid #ffffff20;border-radius:12px;color:#f7f2f8;text-decoration:none;font-size:.88rem;font-weight:650;background:#ffffff08;transition:background .18s,border-color .18s,transform .18s}
+.link:hover{background:#f0b9d51a;border-color:#f0b9d566;transform:translateY(-2px)}
+.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:26px;color:#777582;font-size:.75rem;letter-spacing:.04em}
+@media(max-width:480px){body{padding:12px}.profile{border-radius:18px}.identity{gap:13px;margin-top:-48px}.avatar{width:92px;height:92px;flex-basis:92px}.bio{margin-top:20px}.content{padding-bottom:24px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="profile" aria-label="Moon Junz profile">
+  <header class="banner"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/moon-banner.png" alt="Moon Junz profile banner"></header>
+  <section class="content">
+    <div class="identity">
+      <div class="avatar"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/IMG_0102.jpeg" alt="Moon Junz profile picture"></div>
+      <div class="name"><h1>Moon Junz</h1><p class="handle">@moon.d.flower</p></div>
+    </div>
+    <p class="bio"><strong>The Forged Flowers.</strong><br>Love isn’t just an emotion, but an act of sacrifice.</p>
+    <nav class="links" aria-label="Profile links">
+      <a class="link" href="https://github.com/dhisjwhd-svg" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a class="link" href="https://www.tiktok.com/@moon.d.flower" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
+    </nav>
+    <footer class="footer"><span>THE FORGED FLOWERS</span><span>MOON.D.FLOWER</span></footer>
+  </section>
+</main>
+</body>
+</html>
