@@ -1166,9 +1166,18 @@ button { -webkit-tap-highlight-color: transparent; }
   function initProfileImage() {
     const avatar = $("#profileAvatar");
     if (!avatar) return;
-    // Set a real profile image here when its exact repository asset path is known.
-    // The monogram fallback keeps the page intentional instead of showing a broken image.
-    avatar.setAttribute("aria-label", "moon.d.flower profile mark");
+    const image = document.createElement("img");
+    image.src = "https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/kirby-dvd.jpg";
+    image.alt = "moon.d.flower profile picture";
+    image.loading = "eager";
+    image.decoding = "async";
+    image.fetchPriority = "high";
+    image.addEventListener("error", () => {
+      image.remove();
+      avatar.setAttribute("aria-label", "moon.d.flower profile mark");
+    }, { once: true });
+    avatar.replaceChildren(image);
+    avatar.setAttribute("aria-label", "moon.d.flower profile picture");
   }
 
   const memberProfiles = {
