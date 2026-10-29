@@ -660,6 +660,33 @@ button { -webkit-tap-highlight-color: transparent; }
   .archive-tile__title { font-size: 15px; }
   .footer__meta { flex-wrap: wrap; gap: 12px; }
 }
+
+/* The Forged Flowers member directory */
+.members-section{position:relative;padding-top:clamp(60px,8vw,104px)}
+.members-section:before{content:"";position:absolute;left:0;right:0;top:22px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,166,255,.22),rgba(255,255,255,.08),transparent)}
+.members-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:26px}.members-intro .section-heading__description{max-width:360px}
+.member-count{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font:10px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}.member-count:before{content:"";width:6px;height:6px;border-radius:50%;background:#b8e4bd;box-shadow:0 0 12px #b8e4bd66}
+.member-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.member-card{--member-accent:#c8a7f3;position:relative;isolation:isolate;min-width:0;overflow:hidden;border:1px solid rgba(255,255,255,.105);border-radius:17px;background:linear-gradient(160deg,rgba(28,22,37,.9),rgba(13,11,18,.97));box-shadow:0 15px 45px rgba(0,0,0,.16);transition:transform .3s cubic-bezier(.2,.75,.25,1),border-color .3s,box-shadow .3s}
+.member-card:hover,.member-card:focus-within{transform:translateY(-5px);border-color:color-mix(in srgb,var(--member-accent) 45%,transparent);box-shadow:0 24px 56px rgba(0,0,0,.28),0 0 32px color-mix(in srgb,var(--member-accent) 8%,transparent)}
+.member-card__banner{height:155px;position:relative;overflow:hidden;background:#211a2a}.member-card__banner img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 42%;transition:transform .65s cubic-bezier(.2,.75,.25,1),filter .3s}.member-card:hover .member-card__banner img{transform:scale(1.045);filter:saturate(1.06)}
+.member-card__banner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,12,.03) 20%,rgba(12,9,17,.12) 50%,rgba(14,11,18,.97) 100%);pointer-events:none}
+.member-card__index{position:absolute;z-index:1;top:13px;left:14px;color:#fff;font:9px "DM Mono",monospace;letter-spacing:.13em;text-shadow:0 1px 10px #000}.member-card__role{position:absolute;z-index:1;top:10px;right:10px;border:1px solid #ffffff30;border-radius:999px;padding:5px 8px;background:#0b0910a6;color:#fff;font-size:9px;backdrop-filter:blur(12px)}
+.member-card__body{position:relative;padding:0 18px 18px}.member-card__identity{display:flex;align-items:end;gap:12px;margin-top:-43px;position:relative;z-index:2}
+.member-card__avatar{width:82px;height:82px;flex:0 0 82px;padding:4px;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:#100d15;box-shadow:0 7px 24px #0008}.member-card__avatar img{width:100%;height:100%;display:block;object-fit:cover;border-radius:50%;background:#28202e}
+.member-card__identity-copy{min-width:0;padding-bottom:7px}.member-card__name{margin:0;color:#f6f0fb;font:750 20px/1.12 Manrope,sans-serif;letter-spacing:-.045em;overflow-wrap:anywhere}.member-card__handle{margin:5px 0 0;color:var(--member-accent);font:11px "DM Mono",monospace;overflow-wrap:anywhere}
+.member-card__bio{min-height:58px;margin:17px 0 15px;color:#c4bbc9;font-size:12px;line-height:1.8;white-space:pre-line}.member-card__rule{height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--member-accent) 40%,transparent),rgba(255,255,255,.07),transparent);margin:0 0 13px}
+.member-card__footer{display:flex;align-items:center;justify-content:space-between;gap:10px}.member-card__links{display:flex;align-items:center;flex-wrap:wrap;gap:7px}.member-link{display:inline-flex;align-items:center;gap:6px;min-height:29px;padding:6px 9px;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#e8deee;font-size:10px;text-decoration:none;transition:background .2s,border-color .2s}.member-link:hover{background:rgba(255,255,255,.07);border-color:color-mix(in srgb,var(--member-accent) 45%,transparent)}
+.member-card__open{display:inline-flex;align-items:center;gap:6px;padding:6px 0;border:0;background:none;color:var(--member-accent);font-size:10px;font-weight:750;white-space:nowrap;cursor:pointer}.member-card__open svg{width:13px;height:13px;transition:transform .2s}.member-card__open:hover svg{transform:translate(3px,-2px)}.member-card__open:focus-visible,.member-link:focus-visible{outline:2px solid var(--member-accent);outline-offset:3px}
+.member-detail{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:22px;background:rgba(4,3,7,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.member-detail[hidden]{display:none}
+.member-detail__dialog{position:relative;width:min(100%,540px);max-height:min(84svh,760px);overflow:auto;border:1px solid rgba(255,255,255,.16);border-radius:20px;background:#100d15;box-shadow:0 35px 110px #000b;animation:member-detail-in .25s cubic-bezier(.2,.75,.25,1)}
+@keyframes member-detail-in{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.member-detail__banner{height:190px;position:relative;background:#211a2a}.member-detail__banner img{width:100%;height:100%;object-fit:cover;display:block}.member-detail__banner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(16,13,21,.9))}.member-detail__close{position:absolute;z-index:2;top:13px;right:13px;width:36px;height:36px;display:grid;place-items:center;border:1px solid #ffffff35;border-radius:50%;background:#09070ca8;color:#fff;font-size:20px;cursor:pointer}
+.member-detail__content{position:relative;padding:0 25px 25px}.member-detail__identity{display:flex;align-items:end;gap:15px;margin-top:-51px;position:relative;z-index:2}.member-detail__avatar{width:98px;height:98px;padding:4px;border:1px solid #ffffff32;border-radius:50%;background:#100d15;box-shadow:0 8px 28px #0009}.member-detail__avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}.member-detail__identity h3{margin:0;font:780 28px/1.1 Manrope,sans-serif;letter-spacing:-.055em;overflow-wrap:anywhere}.member-detail__handle{margin:6px 0 8px;color:var(--detail-accent,#c8a7f3);font:12px "DM Mono",monospace}.member-detail__role{margin:0 0 12px;color:#a89eaf;font-size:10px;letter-spacing:.14em;text-transform:uppercase}.member-detail__bio{margin:22px 0;color:#d2c9d8;font-size:14px;line-height:1.9;white-space:pre-line}.member-detail__socials{display:flex;flex-wrap:wrap;gap:9px}.member-detail__socials a{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#f0e8f5;text-decoration:none;font-size:12px}.member-detail__socials a:hover{border-color:var(--detail-accent,#c8a7f3);background:#ffffff08}
+@media(max-width:920px){.member-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.member-card:last-child{grid-column:1/-1}}
+@media(max-width:620px){.members-intro{align-items:flex-start;flex-direction:column;gap:12px}.member-grid{grid-template-columns:1fr}.member-card:last-child{grid-column:auto}.member-card__banner{height:174px}.member-card__bio{min-height:0}.member-detail{padding:12px}.member-detail__content{padding:0 18px 20px}.member-detail__banner{height:155px}.member-detail__identity h3{font-size:23px}}
+@media(prefers-reduced-motion:reduce){.member-card,.member-card__banner img,.member-detail__dialog{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -680,6 +707,7 @@ button { -webkit-tap-highlight-color: transparent; }
     </a>
     <nav class="nav" id="siteNav" aria-label="Main navigation">
       <a class="nav__link" href="#about">About</a>
+        <a class="nav__link" href="#members">The team</a>
       <a class="nav__link" href="#work">Work</a>
       <a class="nav__link" href="#archive">Archive</a>
       <a class="nav__link" href="#connections">Connections</a>
@@ -730,6 +758,37 @@ button { -webkit-tap-highlight-color: transparent; }
           </div>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="section shell members-section" id="members" aria-labelledby="membersTitle">
+    <div class="section-heading members-intro reveal">
+      <div><span class="eyebrow">The people behind it</span><h2 class="section-heading__title" id="membersTitle">The Forged Flowers.</h2></div>
+      <p class="section-heading__description">Different personalities, one shared space to make things, learn out loud, and leave a mark.</p>
+      <span class="member-count">03 profiles · member directory</span>
+    </div>
+    <div class="member-grid" id="memberGrid">
+      <article class="member-card reveal" style="--member-accent:#d7b6ff">
+        <div class="member-card__banner"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/moon-banner.png" alt="moon.d.flower banner" loading="eager" decoding="async" fetchpriority="high"><span class="member-card__index">PROFILE / 001</span><span class="member-card__role">Lead developer</span></div>
+        <div class="member-card__body"><div class="member-card__identity"><div class="member-card__avatar"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/kirby-dvd.jpg" alt="moon.d.flower profile picture" loading="eager" decoding="async"></div><div class="member-card__identity-copy"><h3 class="member-card__name">moon.d.flower</h3><p class="member-card__handle">@moon.d.flower</p></div></div>
+          <p class="member-card__bio">Web projects, little details, and things made with purpose.
+“Love isn’t just an emotion, but an act of sacrifice.”</p><div class="member-card__rule"></div>
+          <div class="member-card__footer"><div class="member-card__links"><a class="member-link" href="https://www.tiktok.com/@moon.d.flower" target="_blank" rel="noopener noreferrer">TikTok ↗</a><a class="member-link" href="https://github.com/dhisjwhd-svg" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><button class="member-card__open" type="button" data-member-detail="moon">Profile <span aria-hidden="true">↗</span></button></div>
+        </div>
+      </article>
+      <article class="member-card reveal reveal-delay-1" style="--member-accent:#b6d7ff">
+        <div class="member-card__banner"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/satoshiwizard-banner.jpeg" alt="satoshi wizard banner" loading="lazy" decoding="async"><span class="member-card__index">PROFILE / 002</span><span class="member-card__role">Member</span></div>
+        <div class="member-card__body"><div class="member-card__identity"><div class="member-card__avatar"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/satoshiwizard-pfp.jpeg" alt="satoshi wizard profile picture" loading="lazy" decoding="async"></div><div class="member-card__identity-copy"><h3 class="member-card__name">satoshi wizard</h3><p class="member-card__handle">@satoshiwizard</p></div></div>
+          <p class="member-card__bio">not everything needs an explanation ✧</p><div class="member-card__rule"></div>
+          <div class="member-card__footer"><div class="member-card__links"><a class="member-link" href="https://www.tiktok.com/@satoshiwizard" target="_blank" rel="noopener noreferrer">TikTok ↗</a></div><button class="member-card__open" type="button" data-member-detail="satoshi">Profile <span aria-hidden="true">↗</span></button></div>
+        </div>
+      </article>
+      <article class="member-card reveal reveal-delay-2" style="--member-accent:#e6b4b8">
+        <div class="member-card__banner"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/sun-d-flower-banner.gif" alt="sun.d.flower banner" loading="lazy" decoding="async"><span class="member-card__index">PROFILE / 003</span><span class="member-card__role">Member</span></div>
+        <div class="member-card__body"><div class="member-card__identity"><div class="member-card__avatar"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/sun-d-flower-pfp.gif" alt="sun.d.flower profile picture" loading="lazy" decoding="async"></div><div class="member-card__identity-copy"><h3 class="member-card__name">sun.d.flower</h3><p class="member-card__handle">@sun.d.flower</p></div></div>
+          <p class="member-card__bio">If I was your father I still tell you to do you homework.</p><div class="member-card__rule"></div>
+          <div class="member-card__footer"><div class="member-card__links"><span class="member-link">No links listed</span></div><button class="member-card__open" type="button" data-member-detail="sun">Profile <span aria-hidden="true">↗</span></button></div>
+        </div>
+      </article>
     </div>
   </section>
   <section class="section shell" id="about" aria-labelledby="aboutTitle">
@@ -858,6 +917,7 @@ button { -webkit-tap-highlight-color: transparent; }
     <div class="footer__meta"><span>Made with intention</span><span>© <span id="year"></span></span><a class="footer__top" href="#top">Top <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div>
 </footer>
+<div class="member-detail" id="memberDetail" hidden><section class="member-detail__dialog" role="dialog" aria-modal="true" aria-labelledby="memberDetailName" aria-describedby="memberDetailBio"><div class="member-detail__banner"><img id="memberDetailBanner" src="" alt=""><button class="member-detail__close" id="memberDetailClose" type="button" aria-label="Close member profile">×</button></div><div class="member-detail__content"><div class="member-detail__identity"><div class="member-detail__avatar"><img id="memberDetailAvatar" src="" alt=""></div><div><p class="member-detail__role" id="memberDetailRole"></p><h3 id="memberDetailName"></h3><p class="member-detail__handle" id="memberDetailHandle"></p></div></div><p class="member-detail__bio" id="memberDetailBio"></p><div class="member-detail__socials" id="memberDetailSocials"></div></div></section></div>
 <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
 <div class="command-overlay" id="commandOverlay" hidden>
   <section class="command-dialog" role="dialog" aria-modal="true" aria-labelledby="commandTitle">
@@ -1111,6 +1171,41 @@ button { -webkit-tap-highlight-color: transparent; }
     avatar.setAttribute("aria-label", "moon.d.flower profile mark");
   }
 
+  const memberProfiles = {
+    moon:{name:"moon.d.flower",handle:"@moon.d.flower",role:"Lead developer · Profile 001",bio:"Web projects, little details, and things made with purpose.\n\n“Love isn’t just an emotion, but an act of sacrifice.”",accent:"#d7b6ff",banner:"https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/moon-banner.png",avatar:"https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/kirby-dvd.jpg",links:[{label:"TikTok",url:"https://www.tiktok.com/@moon.d.flower"},{label:"GitHub",url:"https://github.com/dhisjwhd-svg"}]},
+    satoshi:{name:"satoshi wizard",handle:"@satoshiwizard",role:"Member · Profile 002",bio:"not everything needs an explanation ✧",accent:"#b6d7ff",banner:"https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/satoshiwizard-banner.jpeg",avatar:"https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/satoshiwizard-pfp.jpeg",links:[{label:"TikTok",url:"https://www.tiktok.com/@satoshiwizard"}]},
+    sun:{name:"sun.d.flower",handle:"@sun.d.flower",role:"Member · Profile 003",bio:"If I was your father I still tell you to do you homework.",accent:"#e6b4b8",banner:"https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/sun-d-flower-banner.gif",avatar:"https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/sun-d-flower-pfp.gif",links:[]}
+  };
+  const memberDetail = $("#memberDetail");
+  const memberDetailClose = $("#memberDetailClose");
+  let memberDetailTrigger = null;
+  function openMemberDetail(key, trigger) {
+    const person = memberProfiles[key];
+    if (!person || !memberDetail) return;
+    memberDetailTrigger = trigger || document.activeElement;
+    const put = (selector, value) => { const node = $(selector); if (node) node.textContent = value; };
+    const banner = $("#memberDetailBanner"), avatar = $("#memberDetailAvatar");
+    banner.src = person.banner; banner.alt = person.name + " banner";
+    avatar.src = person.avatar; avatar.alt = person.name + " profile picture";
+    put("#memberDetailRole", person.role); put("#memberDetailName", person.name);
+    put("#memberDetailHandle", person.handle); put("#memberDetailBio", person.bio);
+    memberDetail.style.setProperty("--detail-accent", person.accent);
+    const socials = $("#memberDetailSocials"); socials.replaceChildren();
+    person.links.forEach((link) => { const a=document.createElement("a"); a.href=link.url; a.target="_blank"; a.rel="noopener noreferrer"; a.textContent=link.label+" ↗"; socials.append(a); });
+    if (!person.links.length) { const note=document.createElement("span"); note.className="member-link"; note.textContent="No social links listed"; socials.append(note); }
+    memberDetail.hidden=false; document.body.style.overflow="hidden"; memberDetailClose?.focus();
+  }
+  function closeMemberDetail() {
+    if (!memberDetail || memberDetail.hidden) return;
+    memberDetail.hidden=true; document.body.style.overflow=""; memberDetailTrigger?.focus?.();
+  }
+  function initMemberDirectory() {
+    $(".member-card__open").forEach((button)=>button.addEventListener("click",()=>openMemberDetail(button.dataset.memberDetail,button)));
+    memberDetailClose?.addEventListener("click",closeMemberDetail);
+    memberDetail?.addEventListener("click",(event)=>{if(event.target===memberDetail)closeMemberDetail();});
+    document.addEventListener("keydown",(event)=>{if(event.key==="Escape"&&memberDetail&&!memberDetail.hidden)closeMemberDetail();});
+  }
+
   function initEvents() {
     filterButtons.forEach((button) => {
       button.addEventListener("click", () => setActiveFilter(button.dataset.filter || "all"));
@@ -1166,6 +1261,7 @@ button { -webkit-tap-highlight-color: transparent; }
 
   function init() {
     initProfileImage();
+    initMemberDirectory();
     initEvents();
     initRevealObserver();
     initActiveNavigation();
