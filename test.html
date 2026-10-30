@@ -959,6 +959,59 @@ function navigate(route) {
   const next = "#" + route;
   if (location.hash === next) {
     
+
+renderRoute(parseRoute(), false);
+    return;
+  }
+  location.hash = next;
+}
+
+document.addEventListener("click", event => {
+  const target = event.target.closest("[data-route]");
+  if (!target) return;
+  event.preventDefault();
+  navigate(target.dataset.route);
+});
+
+window.addEventListener("hashchange", () => renderRoute(parseRoute()));
+mobileToggle.addEventListener("click", () => {
+  const open = mobilePanel.classList.toggle("open");
+  mobileToggle.setAttribute("aria-expanded", String(open));
+  document.getElementById("menu-icon").innerHTML = open
+    ? '<path d="m6 6 12 12M18 6 6 18"/>'
+    : '<path d="M4 7h16M4 12h16M4 17h16"/>';
+});
+
+window.addEventListener("scroll", () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + "%";
+}, { passive: true });
+
+async function populateRepositories() {
+  const grid = document.getElementById("repo-grid");
+  const count = document.getElementById("repo-count");
+  const status = document.getElementById("repo-status");
+  if (!grid || grid.dataset.loaded === "true") return;
+  try {
+    const repos = await loadRepositories();
+    if (!document.body.contains(grid)) return;
+    count.textContent = "PUBLIC REPOSITORIES / " + repos.length;
+    status.textContent = "LIVE FROM GITHUB";
+    grid.innerHTML = repos.map(repo =>
+      '<a class="repo-card" href="' + escapeHTML(repo.html_url) + '" target="_blank" rel="noopener noreferrer">' +
+      '<span class="eyebrow">REPOSITORY</span><h3>' + escapeHTML(repo.name) + '</h3>' +
+      '<p>' + escapeHTML(repo.description || "A public project from the Moonflower workspace.") + '</p>' +
+      '<span class="repo-foot"><span>' + escapeHTML((repo.language || "PROJECT").toUpperCase()) + '</span><span>OPEN REPOSITORY</span></span></a>'
+    ).join("") || '<div class="repo-state">No public repositories were returned.</div>';
+    grid.dataset.loaded = "true";
+  } catch (error) {
+    if (!document.body.contains(grid)) return;
+    count.textContent = "GITHUB PROFILE";
+    status.textContent = "LIVE LIST UNAVAILABLE";
+    grid.innerHTML = '<div class="repo-state">GitHub did not return the repository list just now. The profile link still works.</div>';
+  }
+}
+
 /* --------------------------------------------------------------------------
    Gallery viewer
    Opens artwork in a focused overlay. The selected item can be changed with
@@ -1059,57 +1112,6 @@ lightbox.addEventListener("touchend", event => {
   touchStartX = null;
 }, { passive: true });
 
-renderRoute(parseRoute(), false);
-    return;
-  }
-  location.hash = next;
-}
-
-document.addEventListener("click", event => {
-  const target = event.target.closest("[data-route]");
-  if (!target) return;
-  event.preventDefault();
-  navigate(target.dataset.route);
-});
-
-window.addEventListener("hashchange", () => renderRoute(parseRoute()));
-mobileToggle.addEventListener("click", () => {
-  const open = mobilePanel.classList.toggle("open");
-  mobileToggle.setAttribute("aria-expanded", String(open));
-  document.getElementById("menu-icon").innerHTML = open
-    ? '<path d="m6 6 12 12M18 6 6 18"/>'
-    : '<path d="M4 7h16M4 12h16M4 17h16"/>';
-});
-
-window.addEventListener("scroll", () => {
-  const max = document.documentElement.scrollHeight - innerHeight;
-  progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + "%";
-}, { passive: true });
-
-async function populateRepositories() {
-  const grid = document.getElementById("repo-grid");
-  const count = document.getElementById("repo-count");
-  const status = document.getElementById("repo-status");
-  if (!grid || grid.dataset.loaded === "true") return;
-  try {
-    const repos = await loadRepositories();
-    if (!document.body.contains(grid)) return;
-    count.textContent = "PUBLIC REPOSITORIES / " + repos.length;
-    status.textContent = "LIVE FROM GITHUB";
-    grid.innerHTML = repos.map(repo =>
-      '<a class="repo-card" href="' + escapeHTML(repo.html_url) + '" target="_blank" rel="noopener noreferrer">' +
-      '<span class="eyebrow">REPOSITORY</span><h3>' + escapeHTML(repo.name) + '</h3>' +
-      '<p>' + escapeHTML(repo.description || "A public project from the Moonflower workspace.") + '</p>' +
-      '<span class="repo-foot"><span>' + escapeHTML((repo.language || "PROJECT").toUpperCase()) + '</span><span>OPEN REPOSITORY</span></span></a>'
-    ).join("") || '<div class="repo-state">No public repositories were returned.</div>';
-    grid.dataset.loaded = "true";
-  } catch (error) {
-    if (!document.body.contains(grid)) return;
-    count.textContent = "GITHUB PROFILE";
-    status.textContent = "LIVE LIST UNAVAILABLE";
-    grid.innerHTML = '<div class="repo-state">GitHub did not return the repository list just now. The profile link still works.</div>';
-  }
-}
 
 renderRoute(parseRoute(), false);
 })();
