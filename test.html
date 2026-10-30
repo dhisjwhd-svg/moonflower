@@ -417,6 +417,59 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--pink); outline-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Gallery lightbox: image viewing stays inside the site and supports keyboard controls. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  grid-template-rows: auto minmax(0,1fr) auto;
+  gap: 14px;
+  padding: 22px;
+  background: rgba(5,5,8,.94);
+  backdrop-filter: blur(18px);
+}
+.lightbox[hidden] { display: none; }
+.lightbox-top, .lightbox-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.lightbox-top span, .lightbox-bottom span {
+  color: var(--muted);
+  font: 9px var(--mono);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.lightbox-controls { display: flex; align-items: center; gap: 8px; }
+.lightbox-control {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  background: rgba(255,255,255,.04);
+  cursor: pointer;
+}
+.lightbox-control:hover { border-color: var(--pink); background: var(--pink-soft); }
+.lightbox-control svg { width: 18px; height: 18px; }
+.lightbox-stage { min-height: 0; display: grid; place-items: center; }
+.lightbox-stage img {
+  max-width: min(100%,1100px);
+  max-height: 100%;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  box-shadow: 0 25px 90px rgba(0,0,0,.45);
+}
+.gallery-item { cursor: zoom-in; }
+.gallery-item:focus-within { outline: 1px solid var(--pink); outline-offset: 3px; }
+@media(max-width:600px) {
+  .lightbox { padding: 13px; gap: 10px; }
+  .lightbox-control { width: 38px; height: 38px; }
+}
+
 </style>
 </head>
 <body>
@@ -905,7 +958,108 @@ function finishRender(route) {
 function navigate(route) {
   const next = "#" + route;
   if (location.hash === next) {
-    renderRoute(parseRoute(), false);
+    
+/* --------------------------------------------------------------------------
+   Gallery viewer
+   Opens artwork in a focused overlay. The selected item can be changed with
+   the on-screen controls, keyboard keys, or a horizontal touch gesture.
+   -------------------------------------------------------------------------- */
+const lightbox = document.createElement("section");
+lightbox.className = "lightbox";
+lightbox.hidden = true;
+lightbox.setAttribute("role", "dialog");
+lightbox.setAttribute("aria-modal", "true");
+lightbox.setAttribute("aria-label", "Image viewer");
+lightbox.innerHTML =
+  '<div class="lightbox-top"><span id="lightbox-index">IMAGE 01</span>' +
+  '<div class="lightbox-controls"><button class="lightbox-control" id="lightbox-close" aria-label="Close image viewer">' +
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div></div>' +
+  '<div class="lightbox-stage"><img id="lightbox-image" alt=""></div>' +
+  '<div class="lightbox-bottom"><span id="lightbox-caption"></span>' +
+  '<div class="lightbox-controls"><button class="lightbox-control" id="lightbox-prev" aria-label="Previous image">' +
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M19 12H5m7 7-7-7 7-7"/></svg></button>' +
+  '<button class="lightbox-control" id="lightbox-next" aria-label="Next image">' +
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button></div></div>';
+document.body.appendChild(lightbox);
+
+let galleryItems = [];
+let galleryIndex = 0;
+let previousFocus = null;
+let touchStartX = null;
+
+function refreshGalleryItems() {
+  galleryItems = Array.from(document.querySelectorAll(".gallery-item")).map(figure => {
+    const image = figure.querySelector("img");
+    const caption = figure.querySelector("figcaption span");
+    return {
+      src: image ? image.currentSrc || image.src : "",
+      alt: image ? image.alt : "",
+      title: caption ? caption.textContent : "Gallery image"
+    };
+  }).filter(item => item.src);
+}
+
+function showGalleryImage(index) {
+  if (!galleryItems.length) return;
+  galleryIndex = (index + galleryItems.length) % galleryItems.length;
+  const item = galleryItems[galleryIndex];
+  const image = document.getElementById("lightbox-image");
+  image.src = item.src;
+  image.alt = item.alt;
+  document.getElementById("lightbox-caption").textContent = item.title;
+  document.getElementById("lightbox-index").textContent =
+    "IMAGE " + String(galleryIndex + 1).padStart(2,"0") + " / " +
+    String(galleryItems.length).padStart(2,"0");
+}
+
+function openGalleryImage(index) {
+  refreshGalleryItems();
+  if (!galleryItems.length) return;
+  previousFocus = document.activeElement;
+  showGalleryImage(index);
+  lightbox.hidden = false;
+  document.body.style.overflow = "hidden";
+  document.getElementById("lightbox-close").focus();
+}
+
+function closeGalleryImage() {
+  if (lightbox.hidden) return;
+  lightbox.hidden = true;
+  document.body.style.overflow = "";
+  if (previousFocus && typeof previousFocus.focus === "function") previousFocus.focus();
+}
+
+document.addEventListener("click", event => {
+  const image = event.target.closest(".gallery-item img");
+  if (!image) return;
+  const figure = image.closest(".gallery-item");
+  const figures = Array.from(document.querySelectorAll(".gallery-item"));
+  openGalleryImage(figures.indexOf(figure));
+});
+
+document.getElementById("lightbox-close").addEventListener("click", closeGalleryImage);
+document.getElementById("lightbox-prev").addEventListener("click", () => showGalleryImage(galleryIndex - 1));
+document.getElementById("lightbox-next").addEventListener("click", () => showGalleryImage(galleryIndex + 1));
+lightbox.addEventListener("click", event => {
+  if (event.target === lightbox) closeGalleryImage();
+});
+document.addEventListener("keydown", event => {
+  if (lightbox.hidden) return;
+  if (event.key === "Escape") closeGalleryImage();
+  if (event.key === "ArrowLeft") showGalleryImage(galleryIndex - 1);
+  if (event.key === "ArrowRight") showGalleryImage(galleryIndex + 1);
+});
+lightbox.addEventListener("touchstart", event => {
+  touchStartX = event.changedTouches[0].clientX;
+}, { passive: true });
+lightbox.addEventListener("touchend", event => {
+  if (touchStartX === null) return;
+  const distance = event.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(distance) > 55) showGalleryImage(galleryIndex + (distance < 0 ? 1 : -1));
+  touchStartX = null;
+}, { passive: true });
+
+renderRoute(parseRoute(), false);
     return;
   }
   location.hash = next;
