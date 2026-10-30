@@ -1,86 +1,963 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#09090d">
-<meta name="description" content="moon.d.flower — creative work, digital worlds, and The Forged Flowers.">
-<title>moon.d.flower — The Forged Flowers</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="moon.d.flower and The Forged Flowers — projects, people, and things we're making.">
+<title>moon.d.flower | The Forged Flowers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#09090d;--panel:#111117;--panel2:#171720;--line:rgba(255,255,255,.1);--muted:#9996a5;--text:#f4f0f4;--pink:#e9a9c6;--pink2:#c879a0;--lav:#b9a5d9;--mono:"DM Mono",monospace;--sans:"Manrope",sans-serif;--serif:"Playfair Display",serif;--ease:cubic-bezier(.2,.75,.25,1)}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}img{display:block;max-width:100%}::selection{background:#e9a9c655;color:white}
-#progress{position:fixed;z-index:100;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--pink2),var(--lav))}
-.noise{position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.075;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E")}
-.ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}.glow{position:absolute;width:50vw;height:50vw;border-radius:50%;filter:blur(100px);opacity:.13}.glow.a{background:#a35e89;top:-30vw;right:-15vw}.glow.b{background:#635a9d;bottom:-32vw;left:-18vw}
-.wrap{width:min(1180px,90vw);margin:auto}.mono{font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--pink)}
-header{position:fixed;inset:0 0 auto;z-index:60;padding:17px 0;border-bottom:1px solid transparent;transition:.3s}header.scrolled{background:#09090dd9;backdrop-filter:blur(18px);border-color:var(--line)}.nav{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.045em}.brand-icon{width:34px;height:34px;display:grid;place-items:center;border:1px solid #e9a9c677;border-radius:50%;color:var(--pink)}.brand-icon svg{width:19px;height:19px}.brand small{display:block;font:9px var(--mono);letter-spacing:.14em;color:var(--muted);margin-top:2px}.navlinks{display:flex;align-items:center;gap:27px}.navlinks a{font-size:10px;letter-spacing:.09em;color:#c4bec9;transition:color .2s}.navlinks a:hover{color:var(--pink)}.navlinks .contact-link{padding:10px 14px;border:1px solid var(--line)}.menu{display:none;background:transparent;border:1px solid var(--line);padding:8px;border-radius:5px}.menu svg{width:18px;height:18px}
-.hero{min-height:100svh;padding:160px 0 90px;display:flex;align-items:center;position:relative}.hero-copy{position:relative;z-index:2;width:68%}.kicker{display:flex;align-items:center;gap:12px}.kicker:before{content:"";width:27px;height:1px;background:var(--pink)}h1{font-size:clamp(65px,11vw,145px);line-height:.88;letter-spacing:-.095em;font-weight:600;margin:32px 0 28px}h1 em{font:italic 500 1em var(--serif);letter-spacing:-.075em;color:var(--pink)}.hero-desc{max-width:470px;color:#aaa5b1;font-size:14px;line-height:1.95}.hero-desc strong{color:#f4edf3;font-weight:650}.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:30px}.button{display:inline-flex;align-items:center;gap:17px;padding:14px 17px;border:1px solid var(--line);font:10px var(--mono);letter-spacing:.09em;transition:.3s}.button.primary{background:#f2eaf0;color:#161119;border-color:#f2eaf0}.button:hover{transform:translateY(-3px);border-color:var(--pink)}.button svg{width:15px;height:15px}.hero-art{position:absolute;right:2%;top:22%;width:min(32vw,370px);aspect-ratio:4/5;padding:8px;border:1px solid #ffffff2a;background:#ffffff08;transform:rotate(3deg);box-shadow:0 35px 100px #0009;z-index:1}.hero-art img{width:100%;height:100%;object-fit:cover}.hero-art:after{content:"";position:absolute;inset:8px;background:linear-gradient(180deg,transparent 65%,#08080bd9)}.hero-art-label{position:absolute;z-index:2;bottom:23px;left:22px;font:9px var(--mono);letter-spacing:.16em}.hero-note{position:absolute;right:0;top:48%;writing-mode:vertical-rl;color:#6f6b78;font:9px var(--mono);letter-spacing:.2em}
-.section{padding:115px 0;border-top:1px solid var(--line)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:48px}.index{margin-bottom:16px}.section h2{font-size:clamp(42px,6vw,72px);line-height:1;letter-spacing:-.075em;font-weight:600;margin:0}.section h2 em{font:italic 500 1em var(--serif);color:var(--pink)}.intro{max-width:350px;color:var(--muted);font-size:12px;line-height:1.9}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:9vw}.statement{font:clamp(28px,4vw,48px)/1.25 var(--serif);letter-spacing:-.035em}.statement em{color:var(--pink)}.about-text{font-size:13px;line-height:2;color:#aaa5b1}.about-text p{margin:0 0 17px}.signature{margin-top:30px;color:var(--pink);font:10px var(--mono);letter-spacing:.16em}
-.team-banner{margin-top:48px;position:relative;height:260px;overflow:hidden;border:1px solid var(--line)}.team-banner img{width:100%;height:100%;object-fit:cover;object-position:center 45%;filter:saturate(.8);opacity:.82}.team-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#09090de8,transparent 78%),linear-gradient(0deg,#09090d88,transparent 65%)}.team-banner-label{position:absolute;z-index:2;left:30px;bottom:25px}.team-banner-label strong{display:block;font-size:clamp(25px,4vw,43px);letter-spacing:-.06em}.team-banner-label span{font:9px var(--mono);letter-spacing:.18em;color:var(--pink)}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.member{position:relative;background:linear-gradient(150deg,#191720,#0e0d13);border:1px solid var(--line);overflow:hidden;transition:transform .4s var(--ease),border-color .3s}.member:hover{transform:translateY(-6px);border-color:#e9a9c66b}.member-cover{height:165px;position:relative;overflow:hidden;background:#19151d}.member-cover img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}.member:hover .member-cover img{transform:scale(1.05)}.member-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,#111017)}.member-body{padding:0 21px 22px}.member-avatar{width:76px;height:76px;object-fit:cover;border-radius:50%;border:4px solid #111017;margin-top:-43px;position:relative;z-index:2;background:#29202d}.member-role{font:9px var(--mono);letter-spacing:.14em;color:var(--pink);margin-top:13px}.member h3{font-size:23px;letter-spacing:-.055em;margin:8px 0 4px}.member-handle{font:10px var(--mono);color:#8e8997}.member-bio{min-height:75px;color:#b8b1bd;font-size:11px;line-height:1.8;margin:17px 0}.social-row{display:flex;gap:8px;flex-wrap:wrap}.social-icon{width:35px;height:35px;display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;color:#d9cbd8;transition:.2s}.social-icon:hover{color:var(--pink);border-color:#e9a9c677;transform:translateY(-2px)}.social-icon svg{width:16px;height:16px}.member-empty{font:10px var(--mono);color:#817988}
-.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.project{position:relative;min-height:270px;padding:27px;background:linear-gradient(145deg,#171720,#0e0e14);border:1px solid var(--line);overflow:hidden;transition:.35s}.project:hover{transform:translateY(-5px);border-color:#e9a9c65c}.project:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-90px;bottom:-120px;background:var(--tint,#bd7895);filter:blur(70px);opacity:.18}.project-top{display:flex;align-items:center;justify-content:space-between;color:#898492;font:9px var(--mono);letter-spacing:.14em}.project-icon{width:39px;height:39px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--pink)}.project-icon svg{width:18px;height:18px}.project h3{font-size:29px;letter-spacing:-.06em;margin:42px 0 10px}.project p{max-width:440px;color:#a39daa;font-size:11px;line-height:1.9}.project-foot{position:absolute;bottom:23px;left:27px;right:27px;display:flex;justify-content:space-between;color:#aaa4b0;font:9px var(--mono);letter-spacing:.1em}.project-foot svg{width:16px;height:16px;color:var(--pink)}.project.wide{grid-column:span 2;min-height:220px}.project.wide h3{margin-top:27px}
-.repo-toolbar{display:flex;justify-content:space-between;gap:15px;margin-bottom:17px}.repo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.repo{padding:20px;border:1px solid var(--line);background:#121219;min-height:175px;display:flex;flex-direction:column;transition:.3s}.repo:hover{transform:translateY(-4px);border-color:#e9a9c655}.repo h3{font-size:16px;margin:16px 0 8px}.repo p{font-size:10px;line-height:1.8;color:var(--muted);margin:0 0 18px}.repo-foot{margin-top:auto;display:flex;justify-content:space-between;color:var(--pink);font:9px var(--mono)}
-.principles{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}.principle{padding:25px;min-height:180px}.principle+.principle{border-left:1px solid var(--line)}.principle small{font:9px var(--mono);color:var(--pink)}.principle h3{font-size:17px;margin:26px 0 8px}.principle p{font-size:10px;line-height:1.8;color:var(--muted);margin:0}
-.contact{padding:110px 0 90px;border-top:1px solid var(--line)}.contact h2{font-size:clamp(52px,9vw,108px);line-height:.95;letter-spacing:-.09em;margin:25px 0}.contact h2 em{font:italic 500 1em var(--serif);color:var(--pink)}.contact-bottom{display:flex;justify-content:space-between;align-items:end;gap:25px}.contact-bottom p{max-width:380px;color:var(--muted);font-size:12px;line-height:1.9}.contact-socials{display:flex;gap:9px;flex-wrap:wrap}
-footer{border-top:1px solid var(--line);padding:24px 0;color:#77727f;font:9px var(--mono);letter-spacing:.1em}.footer-inner{display:flex;justify-content:space-between;gap:18px}.footer-inner a{color:#d6c8d6}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.in{opacity:1;transform:none}
-#top{position:fixed;z-index:45;right:22px;bottom:22px;width:43px;height:43px;display:grid;place-items:center;background:#17151ddd;border:1px solid var(--line);opacity:0;pointer-events:none;transition:.25s}#top.show{opacity:1;pointer-events:auto}#top svg{width:17px;height:17px;color:var(--pink)}
-@media(max-width:760px){.wrap{width:88vw}.menu{display:block}.navlinks{display:none;position:absolute;top:64px;left:6vw;right:6vw;background:#111117;border:1px solid var(--line);padding:20px;flex-direction:column;align-items:stretch;gap:19px}.navlinks.open{display:flex}.navlinks a{font-size:12px}.hero{min-height:94svh;padding:135px 0 75px}.hero-copy{width:100%}.hero-art{width:32vw;right:0;top:26%;opacity:.7}.hero-note{display:none}h1{font-size:clamp(59px,14vw,100px);max-width:88%}.hero-desc{max-width:65%;font-size:12px}.section{padding:83px 0}.section-head,.contact-bottom{align-items:start;flex-direction:column}.about-grid{grid-template-columns:1fr;gap:27px}.team-banner{height:210px}.team-grid{grid-template-columns:1fr 1fr}.member:last-child{grid-column:span 2}.repo-grid{grid-template-columns:1fr 1fr}.principles{grid-template-columns:1fr}.principle+.principle{border-left:0;border-top:1px solid var(--line)}.project.wide{grid-column:auto}.project-grid{grid-template-columns:1fr}.project{min-height:255px}.project.wide{min-height:255px}.footer-inner{flex-direction:column}}
-@media(max-width:470px){.team-grid{grid-template-columns:1fr}.member:last-child{grid-column:auto}.repo-grid{grid-template-columns:1fr}.hero-art{width:30vw;top:31%;right:-1%}.hero-desc{max-width:78%}.hero h1{font-size:clamp(57px,14vw,82px)}.team-banner{height:175px}.member-cover{height:145px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+:root {
+  color-scheme: dark;
+  --bg: #09090d;
+  --surface: #111117;
+  --surface-raised: #171720;
+  --surface-soft: #1c1921;
+  --line: rgba(255,255,255,.095);
+  --line-strong: rgba(255,255,255,.16);
+  --text: #f3eff4;
+  --muted: #a29ba9;
+  --dim: #77717e;
+  --pink: #e7a8c4;
+  --pink-soft: rgba(231,168,196,.13);
+  --lavender: #bba6dc;
+  --green: #9ec5a8;
+  --mono: "DM Mono", monospace;
+  --sans: "Manrope", sans-serif;
+  --serif: "Playfair Display", serif;
+  --ease: cubic-bezier(.2,.75,.25,1);
+  --header-height: 76px;
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse 55% 45% at 94% -5%, rgba(108,76,127,.15), transparent 70%),
+    radial-gradient(ellipse 48% 42% at -8% 48%, rgba(104,72,111,.1), transparent 72%),
+    var(--bg);
+  font-family: var(--sans);
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .12;
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+a { color: inherit; text-decoration: none; }
+button { color: inherit; font: inherit; }
+img { display: block; max-width: 100%; }
+svg { display: block; }
+::selection { color: #fff; background: rgba(231,168,196,.38); }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; }
+#reading-progress { position: fixed; z-index: 100; top: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg,var(--pink),var(--lavender)); }
+.ambient {
+  position: fixed;
+  z-index: -1;
+  width: 44vw;
+  height: 44vw;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  opacity: .08;
+}
+.ambient.one { top: -25vw; right: -12vw; background: #c47da5; }
+.ambient.two { bottom: -30vw; left: -15vw; background: #7770b3; }
+.wrap { width: min(1160px, 90vw); margin-inline: auto; }
+.eyebrow {
+  color: var(--pink);
+  font: 10px var(--mono);
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+.muted { color: var(--muted); }
+.dim { color: var(--dim); }
+.icon { width: 18px; height: 18px; flex: 0 0 auto; }
+.icon.small { width: 14px; height: 14px; }
+.icon.large { width: 24px; height: 24px; }
+.topbar {
+  position: sticky;
+  z-index: 70;
+  top: 0;
+  min-height: var(--header-height);
+  border-bottom: 1px solid var(--line);
+  background: rgba(9,9,13,.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.nav-inner { min-height: var(--header-height); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+  color: var(--pink);
+  border: 1px solid rgba(231,168,196,.48);
+  border-radius: 50%;
+  background: rgba(231,168,196,.045);
+}
+.brand-mark svg { width: 20px; height: 20px; }
+.brand-name { font-size: 14px; font-weight: 800; letter-spacing: -.045em; }
+.brand-sub { display: block; margin-top: 3px; color: var(--dim); font: 8px var(--mono); letter-spacing: .16em; }
+.main-nav { display: flex; align-items: center; gap: 6px; }
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 12px;
+  color: #bcb5c1;
+  border: 1px solid transparent;
+  background: transparent;
+  font: 9px var(--mono);
+  letter-spacing: .09em;
+  cursor: pointer;
+  transition: color .2s, background .2s, border-color .2s;
+}
+.nav-link:hover, .nav-link.active { color: var(--text); border-color: var(--line); background: rgba(255,255,255,.035); }
+.nav-link.active { color: var(--pink); }
+.nav-right { display: flex; align-items: center; gap: 9px; }
+.nav-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  font: 9px var(--mono);
+  letter-spacing: .08em;
+  transition: border-color .2s, background .2s;
+}
+.nav-github:hover { border-color: var(--pink); background: var(--pink-soft); }
+.mobile-toggle {
+  display: none;
+  width: 39px;
+  height: 39px;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+}
+.mobile-panel { display: none; }
+#app { min-height: calc(100vh - var(--header-height)); }
+.page {
+  min-height: calc(100vh - var(--header-height));
+  animation: page-in .34s var(--ease) both;
+}
+.page.page-out { animation: page-out .16s ease both; }
+@keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes page-out { to { opacity: 0; transform: translateY(-5px); } }
+.page-shell { padding: 72px 0 100px; }
+.page-heading { display: flex; align-items: end; justify-content: space-between; gap: 35px; margin-bottom: 42px; }
+.page-heading h1 {
+  max-width: 760px;
+  margin: 15px 0 0;
+  font-size: clamp(45px,7vw,82px);
+  line-height: .98;
+  letter-spacing: -.085em;
+  font-weight: 650;
+}
+.page-heading h1 em { color: var(--pink); font: italic 500 1em var(--serif); }
+.page-heading p { max-width: 360px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.95; }
+.breadcrumbs { display: flex; align-items: center; gap: 9px; margin-bottom: 23px; color: var(--dim); font: 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.breadcrumbs button { border: 0; padding: 0; color: var(--muted); background: none; font: inherit; cursor: pointer; }
+.breadcrumbs button:hover { color: var(--pink); }
+.breadcrumbs svg { width: 12px; height: 12px; }
+.section-label { margin-bottom: 15px; color: var(--pink); font: 9px var(--mono); letter-spacing: .17em; text-transform: uppercase; }
+.display-title { margin: 0; font-size: clamp(44px,7vw,90px); line-height: .95; letter-spacing: -.09em; font-weight: 650; }
+.display-title em { color: var(--pink); font: italic 500 1em var(--serif); }
+.lead { max-width: 590px; color: var(--muted); font-size: 14px; line-height: 2; }
+.button-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 27px; }
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  min-height: 46px;
+  padding: 0 16px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255,255,255,.025);
+  color: var(--text);
+  font: 9px var(--mono);
+  letter-spacing: .1em;
+  cursor: pointer;
+  transition: transform .22s, border-color .22s, background .22s;
+}
+.action:hover { transform: translateY(-2px); border-color: var(--pink); background: var(--pink-soft); }
+.action.primary { border-color: #eadce6; background: #eadce6; color: #17121a; }
+.action.primary:hover { border-color: var(--pink); background: var(--pink); }
+.action svg { width: 15px; height: 15px; }
+.home-hero { position: relative; padding: 104px 0 84px; overflow: hidden; }
+.home-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(250px,.8fr); align-items: center; gap: 55px; }
+.home-copy { position: relative; z-index: 2; }
+.home-title { max-width: 820px; margin: 25px 0 26px; font-size: clamp(65px,11vw,132px); line-height: .87; letter-spacing: -.105em; font-weight: 600; }
+.home-title em { color: var(--pink); font: italic 500 1em var(--serif); letter-spacing: -.09em; }
+.home-copy p { max-width: 510px; color: #aaa3b0; font-size: 13px; line-height: 2; }
+.home-copy p strong { color: var(--text); font-weight: 700; }
+.home-portrait { position: relative; justify-self: end; width: min(100%,350px); aspect-ratio: 4/5; padding: 8px; border: 1px solid var(--line-strong); background: rgba(255,255,255,.025); transform: rotate(2deg); }
+.home-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.home-portrait::after { content: ""; position: absolute; inset: 8px; pointer-events: none; background: linear-gradient(180deg,transparent 65%,rgba(8,7,11,.82)); }
+.portrait-caption { position: absolute; z-index: 2; left: 24px; bottom: 23px; color: white; font: 9px var(--mono); letter-spacing: .15em; }
+.home-meta { display: flex; align-items: center; gap: 18px; margin-top: 39px; color: var(--dim); font: 9px var(--mono); letter-spacing: .12em; }
+.home-meta span { display: inline-flex; align-items: center; gap: 8px; }
+.home-meta span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--pink); }
+.home-meta span + span::before { background: var(--lavender); }
+.quick-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 11px; padding: 0 0 82px; }
+.quick-card {
+  display: flex;
+  min-height: 156px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+  cursor: pointer;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.quick-card:hover { transform: translateY(-4px); border-color: rgba(231,168,196,.45); background: linear-gradient(145deg,rgba(231,168,196,.08),rgba(255,255,255,.015)); }
+.quick-card-top { display: flex; align-items: center; justify-content: space-between; color: var(--dim); font: 9px var(--mono); }
+.quick-card-icon { display: grid; width: 36px; height: 36px; place-items: center; color: var(--pink); border: 1px solid rgba(231,168,196,.25); border-radius: 50%; }
+.quick-card h2 { margin: 24px 0 5px; font-size: 17px; letter-spacing: -.045em; }
+.quick-card p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.home-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding: 60px 0 95px; border-top: 1px solid var(--line); }
+.home-feature h2 { margin: 13px 0; font-size: clamp(35px,5vw,58px); line-height: 1; letter-spacing: -.07em; }
+.home-feature h2 em { color: var(--pink); font: italic 500 1em var(--serif); }
+.home-feature p { color: var(--muted); font-size: 12px; line-height: 1.95; }
+.feature-image { height: 245px; overflow: hidden; border: 1px solid var(--line); }
+.feature-image img { width: 100%; height: 100%; object-fit: cover; }
+.page-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
+.info-card { padding: 24px; border: 1px solid var(--line); background: rgba(255,255,255,.018); }
+.info-card .card-number { color: var(--pink); font: 9px var(--mono); letter-spacing: .15em; }
+.info-card h3 { margin: 28px 0 9px; font-size: 19px; letter-spacing: -.05em; }
+.info-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.9; }
+.prose-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; }
+.prose-quote { font: clamp(27px,4vw,47px)/1.27 var(--serif); letter-spacing: -.035em; }
+.prose-quote em { color: var(--pink); }
+.prose-body { color: #b4adba; font-size: 13px; line-height: 2.05; }
+.prose-body p { margin: 0 0 17px; }
+.prose-body strong { color: var(--text); }
+.image-strip { display: grid; grid-template-columns: 1.25fr .8fr .8fr; gap: 10px; margin-top: 50px; }
+.image-strip figure { height: 225px; margin: 0; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.image-strip figure:first-child { height: 260px; }
+.image-strip img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s; }
+.image-strip figure:hover img { transform: scale(1.04); }
+.team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.team-card { overflow: hidden; border: 1px solid var(--line); background: linear-gradient(150deg,#191720,#0f0e14); transition: transform .25s,border-color .25s; cursor: pointer; }
+.team-card:hover { transform: translateY(-5px); border-color: rgba(231,168,196,.48); }
+.team-cover { height: 150px; overflow: hidden; background: #211a25; }
+.team-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s; }
+.team-card:hover .team-cover img { transform: scale(1.04); }
+.team-content { padding: 0 19px 20px; }
+.team-avatar { width: 76px; height: 76px; margin-top: -38px; position: relative; border: 4px solid #111017; border-radius: 50%; object-fit: cover; background: #28202d; }
+.team-role { margin-top: 13px; color: var(--pink); font: 9px var(--mono); letter-spacing: .14em; }
+.team-content h3 { margin: 8px 0 3px; font-size: 22px; letter-spacing: -.06em; }
+.team-handle { color: var(--dim); font: 10px var(--mono); }
+.team-bio { min-height: 58px; margin: 15px 0; color: #b9b1bd; font-size: 11px; line-height: 1.85; }
+.team-card-foot { display: flex; align-items: center; justify-content: space-between; color: var(--dim); font: 9px var(--mono); letter-spacing: .1em; }
+.team-card-foot svg { color: var(--pink); }
+.profile-layout { display: grid; grid-template-columns: minmax(0,1fr) 290px; gap: 28px; align-items: start; }
+.profile-main { overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.profile-banner { height: 260px; background: var(--surface-raised); }
+.profile-banner img { width: 100%; height: 100%; object-fit: cover; }
+.profile-main-content { padding: 0 28px 28px; }
+.profile-identity { display: flex; align-items: end; justify-content: space-between; margin-top: -48px; }
+.profile-avatar { width: 100px; height: 100px; padding: 4px; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--surface); object-fit: cover; }
+.profile-kicker { margin: 18px 0 8px; color: var(--pink); font: 9px var(--mono); letter-spacing: .15em; }
+.profile-main h1 { margin: 0; font-size: clamp(35px,5vw,55px); letter-spacing: -.075em; }
+.profile-handle { margin-top: 7px; color: var(--muted); font: 11px var(--mono); }
+.profile-bio { max-width: 600px; margin: 22px 0; color: #c4bdc8; font-size: 13px; line-height: 2; white-space: pre-line; }
+.profile-links { display: flex; gap: 9px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid var(--line); }
+.social-link { display: inline-flex; align-items: center; gap: 9px; min-height: 42px; padding: 0 13px; border: 1px solid var(--line); color: #ded7e1; font-size: 11px; transition: border-color .2s,background .2s; }
+.social-link:hover { border-color: var(--pink); background: var(--pink-soft); }
+.social-link svg { width: 16px; height: 16px; color: var(--pink); }
+.profile-aside { padding: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.02); }
+.profile-aside h2 { margin: 0 0 14px; font-size: 14px; }
+.profile-aside p { color: var(--muted); font-size: 11px; line-height: 1.9; }
+.profile-aside .action { width: 100%; margin-top: 8px; }
+.project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 13px; }
+.project-card {
+  position: relative;
+  display: flex;
+  min-height: 250px;
+  flex-direction: column;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg,#171720,#0e0e14);
+  cursor: pointer;
+  transition: transform .25s,border-color .25s;
+}
+.project-card:hover { transform: translateY(-4px); border-color: rgba(231,168,196,.46); }
+.project-card::after { content: ""; position: absolute; width: 170px; height: 170px; right: -100px; bottom: -110px; border-radius: 50%; background: var(--tint,#bd7895); filter: blur(65px); opacity: .2; }
+.project-card-top { display: flex; justify-content: space-between; align-items: center; color: var(--dim); font: 9px var(--mono); letter-spacing: .12em; }
+.project-symbol { display: grid; width: 39px; height: 39px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--pink); }
+.project-card h2 { margin: 35px 0 9px; font-size: 27px; letter-spacing: -.06em; }
+.project-card p { max-width: 430px; margin: 0 0 25px; color: var(--muted); font-size: 11px; line-height: 1.9; }
+.project-card-foot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; color: #a9a2ae; font: 9px var(--mono); letter-spacing: .08em; }
+.project-card-foot svg { color: var(--pink); }
+.project-detail { display: grid; grid-template-columns: 1fr .75fr; gap: 42px; align-items: start; }
+.project-detail-copy { color: #b8b0bd; font-size: 13px; line-height: 2; }
+.project-detail-copy p { margin: 0 0 18px; }
+.project-detail-art { min-height: 280px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.project-detail-art img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; }
+.detail-meta { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 25px; }
+.detail-meta div { padding: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.018); }
+.detail-meta small { display: block; color: var(--dim); font: 8px var(--mono); letter-spacing: .12em; }
+.detail-meta strong { display: block; margin-top: 8px; font-size: 11px; font-weight: 600; }
+.repo-toolbar { display: flex; justify-content: space-between; gap: 15px; align-items: center; margin-bottom: 17px; }
+.repo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 11px; }
+.repo-card { display: flex; min-height: 170px; flex-direction: column; padding: 19px; border: 1px solid var(--line); background: rgba(255,255,255,.02); transition: transform .22s,border-color .22s; }
+.repo-card:hover { transform: translateY(-3px); border-color: rgba(231,168,196,.45); }
+.repo-card h3 { margin: 14px 0 7px; font-size: 15px; letter-spacing: -.04em; }
+.repo-card p { margin: 0 0 15px; color: var(--muted); font-size: 10px; line-height: 1.8; }
+.repo-foot { display: flex; justify-content: space-between; gap: 10px; margin-top: auto; color: var(--pink); font: 9px var(--mono); }
+.repo-state { padding: 22px; border: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.gallery-item { overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.gallery-item img { width: 100%; height: 205px; object-fit: cover; transition: transform .35s; }
+.gallery-item:hover img { transform: scale(1.04); }
+.gallery-item figcaption { display: flex; justify-content: space-between; padding: 12px 14px; color: var(--muted); font: 9px var(--mono); letter-spacing: .08em; }
+.contact-panel { display: grid; grid-template-columns: 1fr .8fr; gap: 45px; padding: 34px; border: 1px solid var(--line); background: linear-gradient(145deg,rgba(231,168,196,.06),rgba(255,255,255,.015)); }
+.contact-panel h2 { margin: 14px 0; font-size: clamp(38px,6vw,66px); line-height: .98; letter-spacing: -.08em; }
+.contact-panel h2 em { color: var(--pink); font: italic 500 1em var(--serif); }
+.contact-panel p { max-width: 460px; color: var(--muted); font-size: 12px; line-height: 1.95; }
+.contact-list { display: flex; flex-direction: column; gap: 9px; justify-content: center; }
+.contact-list a { display: flex; align-items: center; justify-content: space-between; min-height: 51px; padding: 0 14px; border: 1px solid var(--line); color: #d9d2dc; font: 10px var(--mono); letter-spacing: .07em; transition: border-color .2s,background .2s; }
+.contact-list a:hover { border-color: var(--pink); background: var(--pink-soft); }
+.contact-list svg { width: 16px; height: 16px; color: var(--pink); }
+.site-footer { padding: 25px 0; border-top: 1px solid var(--line); color: var(--dim); font: 9px var(--mono); letter-spacing: .1em; }
+.footer-inner { display: flex; justify-content: space-between; gap: 18px; }
+.footer-inner button { border: 0; padding: 0; color: var(--pink); background: none; font: inherit; cursor: pointer; }
+.empty-note { padding: 20px; border: 1px dashed var(--line-strong); color: var(--muted); font-size: 11px; line-height: 1.8; }
+@media (max-width: 900px) {
+  .main-nav { gap: 0; }
+  .nav-link { padding-inline: 8px; font-size: 8px; }
+  .nav-github span { display: none; }
+  .home-grid { gap: 30px; }
+  .home-title { font-size: clamp(60px,10vw,100px); }
+  .quick-grid { grid-template-columns: repeat(2,1fr); }
+  .repo-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 700px) {
+  :root { --header-height: 66px; }
+  .wrap { width: 88vw; }
+  .main-nav, .nav-github { display: none; }
+  .mobile-toggle { display: grid; }
+  .mobile-panel {
+    position: absolute;
+    top: calc(var(--header-height) - 1px);
+    left: 0;
+    right: 0;
+    padding: 12px 6vw 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(9,9,13,.97);
+  }
+  .mobile-panel.open { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .mobile-panel button { min-height: 42px; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: #c9c1cd; font: 9px var(--mono); letter-spacing: .08em; }
+  .home-hero { padding: 78px 0 60px; }
+  .home-grid { grid-template-columns: 1fr; }
+  .home-copy { z-index: 2; }
+  .home-title { max-width: 90%; font-size: clamp(65px,15vw,100px); }
+  .home-portrait { width: min(68%,300px); justify-self: end; margin-top: -10px; }
+  .home-meta { flex-wrap: wrap; gap: 12px; margin-top: 27px; }
+  .quick-grid { padding-bottom: 58px; }
+  .home-feature { grid-template-columns: 1fr; gap: 22px; padding: 45px 0 65px; }
+  .page-shell { padding: 48px 0 70px; }
+  .page-heading { align-items: start; flex-direction: column; gap: 17px; margin-bottom: 29px; }
+  .page-heading h1 { font-size: clamp(46px,12vw,68px); }
+  .prose-grid { grid-template-columns: 1fr; gap: 24px; }
+  .team-grid { grid-template-columns: repeat(2,1fr); }
+  .team-card:last-child { grid-column: span 2; }
+  .profile-layout { grid-template-columns: 1fr; }
+  .profile-aside { order: -1; }
+  .project-detail { grid-template-columns: 1fr; }
+  .contact-panel { grid-template-columns: 1fr; gap: 25px; padding: 23px; }
+  .page-cards { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 470px) {
+  .quick-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .quick-card { min-height: 143px; padding: 15px; }
+  .quick-card h2 { font-size: 15px; }
+  .team-grid, .project-grid, .repo-grid, .page-cards, .gallery-grid { grid-template-columns: 1fr; }
+  .team-card:last-child { grid-column: auto; }
+  .team-cover { height: 165px; }
+  .profile-banner { height: 190px; }
+  .profile-main-content { padding-inline: 18px; }
+  .profile-avatar { width: 86px; height: 86px; }
+  .image-strip { grid-template-columns: 1fr 1fr; }
+  .image-strip figure:first-child { grid-column: span 2; height: 210px; }
+  .image-strip figure { height: 150px; }
+  .detail-meta { grid-template-columns: 1fr 1fr; }
+  .repo-toolbar { align-items: start; flex-direction: column; }
+  .footer-inner { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
 </style>
 </head>
 <body>
-<div id="progress"></div><div class="noise"></div><div class="ambient"><div class="glow a"></div><div class="glow b"></div></div>
-<header id="header"><div class="wrap nav"><a class="brand" href="#home"><span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2.8c2.5 2.4 2.5 4.8 0 7.1-2.5-2.3-2.5-4.7 0-7.1Zm9.2 9.2c-2.4 2.5-4.8 2.5-7.1 0 2.3-2.5 4.7-2.5 7.1 0ZM12 21.2c-2.5-2.4-2.5-4.8 0-7.1 2.5 2.3 2.5 4.7 0 7.1ZM2.8 12c2.4-2.5 4.8-2.5 7.1 0-2.3 2.5-4.7 2.5-7.1 0Z"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span><span>moon.d.flower<small>THE FORGED FLOWERS</small></span></a><button class="menu" id="menu" aria-label="Open navigation" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><nav class="navlinks" id="navlinks"><a href="#about">ABOUT</a><a href="#team">THE TEAM</a><a href="#work">PROJECTS</a><a href="#repositories">GITHUB</a><a href="#contact" class="contact-link">CONNECT</a></nav></div></header>
-<main>
-<section class="hero wrap" id="home"><div class="hero-copy"><div class="mono kicker">INDEPENDENT CREATIVE WORK</div><h1>Made with<br><em>intention.</em></h1><p class="hero-desc"><strong>I'm moon.d.flower.</strong> I build digital spaces, experiment with code, and bring ideas to life alongside <strong>The Forged Flowers.</strong> This is the home of our work, our people, and the things we're creating.</p><div class="hero-actions"><a class="button primary" href="#work">EXPLORE THE WORK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a><a class="button" href="#team">MEET THE TEAM <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a></div></div><figure class="hero-art reveal"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/kirby-dvd.jpg" alt="moon.d.flower profile artwork"><figcaption class="hero-art-label">MOON.D.FLOWER / 001</figcaption></figure><div class="hero-note">THE FORGED FLOWERS · CREATIVE COLLECTIVE</div></section>
-<section class="section" id="about"><div class="wrap"><div class="section-head reveal"><div><div class="mono index">01 / WHO WE ARE</div><h2>A name. A team.<br><em>A growing story.</em></h2></div><p class="intro">A personal creative space shaped by curiosity, collaboration, and a love for making things that feel like our own.</p></div><div class="about-grid"><div class="statement reveal">“Make something that feels like <em>you.</em> Then keep making it better.”</div><div class="about-text reveal"><p>I'm moon.d.flower, and this site brings my projects together with the people behind The Forged Flowers. It's a place to share what we're building, the ideas we're exploring, and the work that keeps evolving.</p><p>From custom web interfaces to digital entertainment projects, I like taking an idea beyond the sketch and turning it into something people can actually explore. The details matter, but so does having fun with the process.</p><p>The Forged Flowers is our team identity. The people, their individual styles, and the things we make together belong here too.</p><div class="signature">BUILT WITH CURIOSITY · THE FORGED FLOWERS</div></div></div><div class="team-banner reveal"><img src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/moon-banner.png" alt="The Forged Flowers visual banner"><div class="team-banner-label"><span>OUR CREATIVE CREW</span><strong>The Forged Flowers</strong></div></div></div></section>
-<section class="section" id="team"><div class="wrap"><div class="section-head reveal"><div><div class="mono index">02 / THE PEOPLE</div><h2>Meet the<br><em>flowers.</em></h2></div><p class="intro">Every profile has its own personality. Meet the current members featured on The Forged Flowers page.</p></div><div class="team-grid">
-<article class="member reveal"><div class="member-cover"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/moon-banner.png" alt="moon.d.flower banner"></div><div class="member-body"><img class="member-avatar" loading="lazy" src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/kirby-dvd.jpg" alt="moon.d.flower profile picture"><div class="member-role">THE FORGED FLOWERS</div><h3>moon.d.flower</h3><div class="member-handle">@moon.d.flower</div><p class="member-bio">Web projects, little details, and things made with purpose.<br><i>“love isn’t just an emotion but an act of sacrifice.”</i></p><div class="social-row"><a class="social-icon" href="https://www.tiktok.com/@moon.d.flower" target="_blank" rel="noopener" aria-label="moon.d.flower on TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 7.2a6.8 6.8 0 0 1-4.1-1.4v8.1a6.4 6.4 0 1 1-5.5-6.3v3.5a2.9 2.9 0 1 0 2 2.8V2.5h3.5c.2 2 1.8 3.8 4.1 4z"/></svg></a><a class="social-icon" href="https://www.instagram.com/moon.d.flower" target="_blank" rel="noopener" aria-label="moon.d.flower on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg></a></div></div></article>
-<article class="member reveal"><div class="member-cover"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/satoshiwizard-banner.jpeg" alt="Satoshi Wizard banner"></div><div class="member-body"><img class="member-avatar" loading="lazy" src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/satoshiwizard-pfp.jpeg" alt="Satoshi Wizard profile picture"><div class="member-role">THE FORGED FLOWERS</div><h3>satoshi wizard</h3><div class="member-handle">@satoshiwizard</div><p class="member-bio">not everything needs an explanation ✧</p><div class="social-row"><a class="social-icon" href="https://www.tiktok.com/@satoshiwizard" target="_blank" rel="noopener" aria-label="Satoshi Wizard on TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 7.2a6.8 6.8 0 0 1-4.1-1.4v8.1a6.4 6.4 0 1 1-5.5-6.3v3.5a2.9 2.9 0 1 0 2 2.8V2.5h3.5c.2 2 1.8 3.8 4.1 4z"/></svg></a></div></div></article>
-<article class="member reveal"><div class="member-cover"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/sun-d-flower-banner.gif" alt="sun.d.flower banner"></div><div class="member-body"><img class="member-avatar" loading="lazy" src="https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/images/profiles/sun-d-flower-pfp.gif" alt="sun.d.flower profile picture"><div class="member-role">THE FORGED FLOWERS</div><h3>sun.d.flower</h3><div class="member-handle">@sun.d.flower</div><p class="member-bio">If I was your father I still tell you to do you homework.</p><div class="social-row"><span class="member-empty">SOCIAL LINKS NOT LISTED</span></div></div></article>
-</div></div></section>
-<section class="section" id="work"><div class="wrap"><div class="section-head reveal"><div><div class="mono index">03 / PROJECTS & EXPERIMENTS</div><h2>Things we're<br><em>bringing to life.</em></h2></div><p class="intro">A collection of digital builds, interface experiments, media projects, and the resources behind them.</p></div><div class="project-grid">
-<a class="project reveal" style="--tint:#8589c7" href="https://github.com/dhisjwhd-svg/LUMIO-OS" target="_blank" rel="noopener"><div class="project-top"><span>01 / DESKTOP EXPERIENCE</span><span class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span></div><h3>Lumio OS</h3><p>A browser-based desktop environment with a custom interface, app launcher, and a world of connected projects.</p><div class="project-foot"><span>INTERFACE · WEB DEVELOPMENT</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19 19 5M8 5h11v11"/></svg></div></a>
-<a class="project reveal" style="--tint:#85ad96" href="https://github.com/dhisjwhd-svg/lumio-assets" target="_blank" rel="noopener"><div class="project-top"><span>02 / DESIGN RESOURCES</span><span class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span></div><h3>Lumio Assets</h3><p>The image library, app artwork, profile visuals, and supporting files that give the Lumio ecosystem its identity.</p><div class="project-foot"><span>ASSETS · VISUAL SYSTEM</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19 19 5M8 5h11v11"/></svg></div></a>
-<a class="project reveal" style="--tint:#c18aa5" href="https://github.com/dhisjwhd-svg/driven" target="_blank" rel="noopener"><div class="project-top"><span>03 / MEDIA EXPERIENCE</span><span class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m10 8 6 4-6 4z"/></svg></span></div><h3>Driven</h3><p>A media interface focused on organizing series, seasons, episodes, artwork, and browsing into a clear experience.</p><div class="project-foot"><span>MEDIA · INTERACTION</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19 19 5M8 5h11v11"/></svg></div></a>
-<a class="project reveal" style="--tint:#b59c70" href="https://github.com/dhisjwhd-svg/pc-wallpaper-assets-" target="_blank" rel="noopener"><div class="project-top"><span>04 / VISUAL COLLECTION</span><span class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m4 17 5-5 3 3 3-4 5 6"/></svg></span></div><h3>Wallpaper Library</h3><p>A growing visual collection for desktop environments and the wider Lumio look and feel.</p><div class="project-foot"><span>ARTWORK · COLLECTION</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19 19 5M8 5h11v11"/></svg></div></a>
-<a class="project wide reveal" style="--tint:#d979a3" href="https://github.com/dhisjwhd-svg/moonflower" target="_blank" rel="noopener"><div class="project-top"><span>05 / CREATIVE HOME</span><span class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c2.5 2.3 2.5 4.7 0 7-2.5-2.3-2.5-4.7 0-7ZM21 12c-2.3 2.5-4.7 2.5-7 0 2.3-2.5 4.7-2.5 7 0ZM12 21c-2.5-2.3-2.5-4.7 0-7 2.5 2.3 2.5 4.7 0 7ZM3 12c2.3-2.5 4.7-2.5 7 0-2.3 2.5-4.7 2.5-7 0Z"/></svg></span></div><h3>Moonflower</h3><p>The home for personal experiments, web projects, and the ideas that keep growing into something bigger.</p><div class="project-foot"><span>PERSONAL WORK · OPEN DEVELOPMENT</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19 19 5M8 5h11v11"/></svg></div></a>
-</div></div></section>
-<section class="section" id="repositories"><div class="wrap"><div class="section-head reveal"><div><div class="mono index">04 / OPEN WORKSPACE</div><h2>From the<br><em>repository.</em></h2></div><p class="intro">A live feed of public projects from the GitHub profile, sorted to keep the main builds easy to find.</p></div><div class="repo-toolbar"><span class="mono" id="repoCount">GITHUB / LOADING</span><span class="intro" id="repoStatus">Connecting to GitHub</span></div><div class="repo-grid" id="repoGrid"><div class="repo">Loading repository list…</div></div></div></section>
-<section class="section" id="values"><div class="wrap"><div class="section-head reveal"><div><div class="mono index">05 / THE WAY WE BUILD</div><h2>Make it useful.<br><em>Make it ours.</em></h2></div><p class="intro">The goal is never complexity for its own sake. It's making something with personality that works well.</p></div><div class="principles reveal"><article class="principle"><small>01 / PURPOSE</small><h3>Start with an idea.</h3><p>Every project begins with a reason to exist, a question, or something worth exploring.</p></article><article class="principle"><small>02 / IDENTITY</small><h3>Give it character.</h3><p>Visual details, thoughtful layouts, and original graphics make each experience feel distinct.</p></article><article class="principle"><small>03 / PROGRESS</small><h3>Keep refining.</h3><p>Build, test, improve, and learn. The best version comes from paying attention to the details.</p></article></div></div></section>
-<section class="contact" id="contact"><div class="wrap"><div class="mono reveal">THE FORGED FLOWERS / CONNECT</div><h2 class="reveal">Keep in touch.<br><em>See what grows.</em></h2><div class="contact-bottom reveal"><p>Follow moon.d.flower, explore the public work, and keep up with the projects coming out of The Forged Flowers.</p><div class="contact-socials"><a class="button primary" href="https://github.com/dhisjwhd-svg" target="_blank" rel="noopener">GITHUB PROFILE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19 19 5M8 5h11v11"/></svg></a><a class="button" href="https://www.tiktok.com/@moon.d.flower" target="_blank" rel="noopener">TIKTOK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19 19 5M8 5h11v11"/></svg></a></div></div></div></section>
-</main>
-<footer><div class="wrap footer-inner"><span>© <span id="year"></span> MOON.D.FLOWER · THE FORGED FLOWERS</span><a href="#home">BACK TO TOP</a></div></footer>
-<button id="top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 19V5m-7 7 7-7 7 7"/></svg></button>
+<div id="reading-progress"></div>
+<div class="ambient one"></div><div class="ambient two"></div>
+<header class="topbar">
+  <div class="wrap nav-inner">
+    <button class="brand" data-route="home" aria-label="Go to home">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M12 2.5c2.7 2.2 2.7 4.7 0 7-2.7-2.3-2.7-4.8 0-7ZM21.5 12c-2.2 2.7-4.7 2.7-7 0 2.3-2.7 4.8-2.7 7 0ZM12 21.5c-2.7-2.2-2.7-4.7 0-7 2.7 2.3 2.7 4.8 0 7ZM2.5 12c2.2-2.7 4.7-2.7 7 0-2.3 2.7-4.8 2.7-7 0Z"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span>
+      <span><span class="brand-name">moon.d.flower</span><span class="brand-sub">THE FORGED FLOWERS</span></span>
+    </button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-link" data-route="home">HOME</button>
+      <button class="nav-link" data-route="about">ABOUT</button>
+      <button class="nav-link" data-route="team">THE TEAM</button>
+      <button class="nav-link" data-route="projects">PROJECTS</button>
+      <button class="nav-link" data-route="gallery">GALLERY</button>
+      <button class="nav-link" data-route="repositories">GITHUB</button>
+    </nav>
+    <div class="nav-right">
+      <a class="nav-github" href="https://github.com/dhisjwhd-svg" target="_blank" rel="noopener"><svg class="icon small" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.55.1.75-.24.75-.53v-2.06c-3.06.67-3.7-1.3-3.7-1.3-.5-1.27-1.23-1.6-1.23-1.6-1-.68.08-.67.08-.67 1.1.08 1.68 1.12 1.68 1.12.98 1.68 2.57 1.2 3.2.92.1-.72.38-1.2.7-1.48-2.44-.28-5.02-1.22-5.02-5.45 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.4.11-2.9 0 0 .92-.3 3.02 1.12a10.5 10.5 0 0 1 5.5 0c2.1-1.42 3.02-1.12 3.02-1.12.6 1.5.22 2.62.11 2.9.7.77 1.12 1.75 1.12 2.95 0 4.24-2.59 5.16-5.05 5.44.4.35.75 1.02.75 2.06v3.07c0 .3.2.64.76.53A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GITHUB</span></a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Open menu" aria-expanded="false"><svg id="menu-icon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobile-panel">
+    <button data-route="home">HOME</button><button data-route="about">ABOUT</button>
+    <button data-route="team">THE TEAM</button><button data-route="projects">PROJECTS</button>
+    <button data-route="gallery">GALLERY</button><button data-route="repositories">GITHUB</button>
+    <button data-route="contact">CONTACT</button>
+  </div>
+</header>
+<main id="app" tabindex="-1" aria-live="polite"></main>
+<footer class="site-footer">
+  <div class="wrap footer-inner"><span>© <span id="year"></span> MOON.D.FLOWER / THE FORGED FLOWERS</span><button data-route="contact">SAY HELLO</button></div>
+</footer>
 <script>
-(()=>{'use strict';
-const $=id=>document.getElementById(id),header=$('header'),progress=$('progress'),top=$('top'),menu=$('menu'),nav=$('navlinks');
-$('year').textContent=new Date().getFullYear();
-function scroll(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max?scrollY/max*100:0)+'%';header.classList.toggle('scrolled',scrollY>25);top.classList.toggle('show',scrollY>500)}
-addEventListener('scroll',scroll,{passive:true});scroll();
-menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.innerHTML=open?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 6 12 12M18 6 6 18"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'});
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
-top.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
-})();
-(async()=>{
-const grid=document.getElementById('repoGrid'),count=document.getElementById('repoCount'),status=document.getElementById('repoStatus');
-const priority=['LUMIO-OS','lumio-assets','driven','pc-wallpaper-assets-','moonflower'];
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-try{
-const r=await fetch('https://api.github.com/users/dhisjwhd-svg/repos?sort=updated&per_page=100',{headers:{Accept:'application/vnd.github+json'}});
-if(!r.ok)throw Error('GitHub '+r.status);
-const data=await r.json(),items=data.filter(x=>!x.fork).sort((a,b)=>{const ai=priority.indexOf(a.name),bi=priority.indexOf(b.name);return(ai<0?99:ai)-(bi<0?99:bi)||new Date(b.updated_at)-new Date(a.updated_at)});
-count.textContent='PUBLIC REPOSITORIES / '+items.length;status.textContent='LIVE FROM GITHUB';
-grid.innerHTML=items.map(x=>'<a class="repo" href="'+esc(x.html_url)+'" target="_blank" rel="noopener"><span class="mono">REPOSITORY</span><h3>'+esc(x.name)+'</h3><p>'+esc(x.description||'An independent project from the Moonflower workspace.')+'</p><div class="repo-foot"><span>'+esc((x.language||'WEB PROJECT').toUpperCase())+'</span><span>VIEW PROJECT</span></div></a>').join('')||'<div class="repo">No public repositories found.</div>';
-}catch(e){count.textContent='GITHUB PROFILE';status.textContent='LIVE FEED UNAVAILABLE';grid.innerHTML='<a class="repo" href="https://github.com/dhisjwhd-svg" target="_blank" rel="noopener"><span class="mono">OPEN GITHUB</span><h3>Explore all projects</h3><p>The live repository feed could not load. Visit the GitHub profile to see the public projects.</p><div class="repo-foot"><span>DHISJWHd-SVG</span><span>VIEW PROFILE</span></div></a>'}
+(() => {
+"use strict";
+
+/* --------------------------------------------------------------------------
+   MOONFLOWER / THE FORGED FLOWERS
+   A small client-side site with separate views, browser history, and detail
+   pages. The content below is deliberately plain-spoken and project-focused.
+   -------------------------------------------------------------------------- */
+
+const ROOT = "https://cdn.jsdelivr.net/gh/dhisjwhd-svg/lumio-assets@main/";
+const RAW = "https://raw.githubusercontent.com/dhisjwhd-svg/lumio-assets/main/";
+const ASSET = {
+  moonAvatar: ROOT + "images/profiles/kirby-dvd.jpg",
+  moonBanner: ROOT + "images/profiles/moon-banner.png",
+  wizardAvatar: ROOT + "images/profiles/satoshiwizard-pfp.jpeg",
+  wizardBanner: ROOT + "images/profiles/satoshiwizard-banner.jpeg",
+  sunAvatar: ROOT + "images/profiles/sun-d-flower-pfp.gif",
+  sunBanner: ROOT + "images/profiles/sun-d-flower-banner.gif",
+  netflix: ROOT + "images/apps/netflix-cover.jpg",
+  spotify: ROOT + "images/apps/spotify-icon.jpg",
+  milkbox: ROOT + "images/apps/milkbox-icon.png",
+  directory: ROOT + "images/apps/directory-icon.jpeg",
+  kon: ROOT + "images/branding/kon-favicon.jpg"
+};
+
+const ICON = {
+  home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
+  about: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>',
+  people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.3-3.5 2.5-5.5 6.5-5.5s6.2 2 6.5 5.5M16 5a3.5 3.5 0 0 1 0 6.8m1.5 3c2.4.6 3.7 2.3 4 5.2"/></svg>',
+  work: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M8 5V3h8v2M3 11h18M10 11v2h4v-2"/></svg>',
+  gallery: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m4 17 5-5 3 3 3-4 5 6"/></svg>',
+  code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m8 8-5 4 5 4m8-8 5 4-5 4m-3-11-2 14"/></svg>',
+  contact: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-7-7 7 7-7 7"/></svg>',
+  external: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6m-1-5-9 9"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg>',
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7 7-7-7 7-7"/></svg>',
+  github: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.55.1.75-.24.75-.53v-2.06c-3.06.67-3.7-1.3-3.7-1.3-.5-1.27-1.23-1.6-1.23-1.6-1-.68.08-.67.08-.67 1.1.08 1.68 1.12 1.68 1.12.98 1.68 2.57 1.2 3.2.92.1-.72.38-1.2.7-1.48-2.44-.28-5.02-1.22-5.02-5.45 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.4.11-2.9 0 0 .92-.3 3.02 1.12a10.5 10.5 0 0 1 5.5 0c2.1-1.42 3.02-1.12 3.02-1.12.6 1.5.22 2.62.11 2.9.7.77 1.12 1.75 1.12 2.95 0 4.24-2.59 5.16-5.05 5.44.4.35.75 1.02.75 2.06v3.07c0 .3.2.64.76.53A11.1 11.1 0 0 0 12 .9Z"/></svg>',
+  tiktok: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 7.2a6.8 6.8 0 0 1-4.1-1.4v8.1a6.4 6.4 0 1 1-5.5-6.3v3.5a2.9 2.9 0 1 0 2 2.8V2.5h3.5c.2 2 1.8 3.8 4.1 4z"/></svg>',
+  instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m9 6 9 6-9 6z"/></svg>',
+  flower: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2.5c2.7 2.2 2.7 4.7 0 7-2.7-2.3-2.7-4.8 0-7ZM21.5 12c-2.2 2.7-4.7 2.7-7 0 2.3-2.7 4.8-2.7 7 0ZM12 21.5c-2.7-2.2-2.7-4.7 0-7 2.7 2.3 2.7 4.8 0 7ZM2.5 12c2.2-2.7 4.7-2.7 7 0-2.3 2.7-4.8 2.7-7 0Z"/><circle cx="12" cy="12" r="1.5"/></svg>'
+};
+
+const MEMBERS = [
+  {
+    id: "moon-d-flower",
+    name: "moon.d.flower",
+    handle: "@moon.d.flower",
+    role: "The Forged Flowers",
+    bio: "Web projects, little details, and things made with purpose.\n“love isn’t just an emotion but an act of sacrifice.”",
+    avatar: ASSET.moonAvatar,
+    banner: ASSET.moonBanner,
+    links: [
+      { label: "TikTok", url: "https://www.tiktok.com/@moon.d.flower", icon: "tiktok" },
+      { label: "Instagram", url: "https://www.instagram.com/moon.d.flower", icon: "instagram" }
+    ],
+    note: "This is my corner of the internet. I work on the site, the code, and a bunch of ideas that turn into projects."
+  },
+  {
+    id: "satoshi-wizard",
+    name: "satoshi wizard",
+    handle: "@satoshiwizard",
+    role: "The Forged Flowers",
+    bio: "not everything needs an explanation ✧",
+    avatar: ASSET.wizardAvatar,
+    banner: ASSET.wizardBanner,
+    links: [
+      { label: "TikTok", url: "https://www.tiktok.com/@satoshiwizard", icon: "tiktok" }
+    ],
+    note: "A member of The Forged Flowers. Their profile artwork and short bio are taken from the team page."
+  },
+  {
+    id: "sun-d-flower",
+    name: "sun.d.flower",
+    handle: "@sun.d.flower",
+    role: "The Forged Flowers",
+    bio: "If I was your father I still tell you to do you homework.",
+    avatar: ASSET.sunAvatar,
+    banner: ASSET.sunBanner,
+    links: [],
+    note: "A member of The Forged Flowers. No public social link is listed on the team profile right now."
+  }
+];
+
+const PROJECTS = [
+  {
+    id: "lumio-os",
+    number: "01",
+    name: "Lumio OS",
+    category: "DESKTOP INTERFACE",
+    description: "A browser-based desktop with its own login, desktop layout, app shortcuts, and connected web projects.",
+    detail: [
+      "Lumio started as a way to make a regular browser page feel more like a computer desktop. The project has grown into a custom interface with its own visual style and a set of connected apps.",
+      "The work is mostly front-end: layout, app windows, navigation, asset loading, and making the experience behave properly on smaller screens as well as a Chromebook."
+    ],
+    tags: ["HTML", "CSS", "JavaScript", "SVG"],
+    repo: "https://github.com/dhisjwhd-svg/LUMIO-OS",
+    image: ASSET.moonBanner,
+    status: "IN DEVELOPMENT"
+  },
+  {
+    id: "lumio-assets",
+    number: "02",
+    name: "Lumio Assets",
+    category: "ARTWORK & RESOURCES",
+    description: "The images and supporting files used across Lumio, including profile artwork, app icons, and banners.",
+    detail: [
+      "This repository keeps the visual files in one place instead of scattering them across separate projects. It includes profile images, banners, and artwork used by the apps.",
+      "Keeping the assets together makes it easier to update a picture once and use it across more than one page."
+    ],
+    tags: ["Images", "JPG", "PNG", "GIF"],
+    repo: "https://github.com/dhisjwhd-svg/lumio-assets",
+    image: ASSET.directory,
+    status: "ASSET LIBRARY"
+  },
+  {
+    id: "driven",
+    number: "03",
+    name: "Driven",
+    category: "MEDIA INTERFACE",
+    description: "A media project for arranging shows, seasons, episodes, thumbnails, and descriptions into a usable library.",
+    detail: [
+      "Driven is where the media-library experiments live. A big part of the work is making folders and episodes easier to recognize and browse.",
+      "The goal is a clear library structure: show pages, season groupings, episode details, and links that open the media source the project is configured to use."
+    ],
+    tags: ["HTML", "JavaScript", "Media UI"],
+    repo: "https://github.com/dhisjwhd-svg/driven",
+    image: ASSET.netflix,
+    status: "IN DEVELOPMENT"
+  },
+  {
+    id: "wallpaper-library",
+    number: "04",
+    name: "Wallpaper Library",
+    category: "VISUAL COLLECTION",
+    description: "A collection of wallpapers and background artwork for desktop-style projects.",
+    detail: [
+      "This repository holds visual material for desktop backgrounds and interface experiments. It gives the projects a place to pull from when the look needs a change.",
+      "The collection can grow over time without having to pack every image directly into the HTML file."
+    ],
+    tags: ["Images", "Backgrounds", "Visuals"],
+    repo: "https://github.com/dhisjwhd-svg/pc-wallpaper-assets-",
+    image: ASSET.moonBanner,
+    status: "COLLECTION"
+  },
+  {
+    id: "moonflower",
+    number: "05",
+    name: "Moonflower",
+    category: "PERSONAL SPACE",
+    description: "The place where personal web experiments, project pages, and the Moonflower identity come together.",
+    detail: [
+      "Moonflower is the home base for the work. It is where the projects can be introduced without making every page feel like a software product landing page.",
+      "This page is part portfolio, part project directory, and part introduction to The Forged Flowers."
+    ],
+    tags: ["Portfolio", "HTML", "CSS", "JavaScript"],
+    repo: "https://github.com/dhisjwhd-svg/moonflower",
+    image: ASSET.moonAvatar,
+    status: "ACTIVE"
+  },
+  {
+    id: "media-apps",
+    number: "06",
+    name: "App Experiments",
+    category: "INTERFACE STUDIES",
+    description: "Small app-style experiences and interface ideas that connect to the wider Lumio setup.",
+    detail: [
+      "Some of the experiments are about how an app should open, how its artwork should appear, and how to keep the interface simple enough to use.",
+      "The assets folder includes artwork for apps such as Netflix, Spotify, Milkbox, and Directory."
+    ],
+    tags: ["UI", "SVG", "App Layouts"],
+    repo: "https://github.com/dhisjwhd-svg/lumio-assets",
+    image: ASSET.spotify,
+    status: "EXPERIMENTS"
+  }
+];
+
+const GALLERY = [
+  { title: "Moonflower banner", type: "PROFILE ART", src: ASSET.moonBanner },
+  { title: "Kirby profile image", type: "PROFILE IMAGE", src: ASSET.moonAvatar },
+  { title: "Satoshi Wizard banner", type: "TEAM ART", src: ASSET.wizardBanner },
+  { title: "Satoshi Wizard profile", type: "TEAM IMAGE", src: ASSET.wizardAvatar },
+  { title: "Netflix artwork", type: "APP ART", src: ASSET.netflix },
+  { title: "Spotify artwork", type: "APP ART", src: ASSET.spotify },
+  { title: "Milkbox artwork", type: "APP ART", src: ASSET.milkbox },
+  { title: "Directory artwork", type: "APP ART", src: ASSET.directory },
+  { title: "Kon icon", type: "BRANDING", src: ASSET.kon }
+];
+
+const app = document.getElementById("app");
+const mobilePanel = document.getElementById("mobile-panel");
+const mobileToggle = document.getElementById("mobile-toggle");
+const progress = document.getElementById("reading-progress");
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, char => ({
+  "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+})[char]);
+
+function icon(name, extraClass = "") {
+  return '<span class="icon ' + extraClass + '" aria-hidden="true">' + (ICON[name] || ICON.flower) + '</span>';
+}
+
+function button(label, route, primary = false) {
+  return '<button class="action ' + (primary ? "primary" : "") + '" data-route="' + escapeHTML(route) + '">' +
+    escapeHTML(label) + icon("arrow") + '</button>';
+}
+
+function externalLink(label, url, primary = false) {
+  return '<a class="action ' + (primary ? "primary" : "") + '" href="' + escapeHTML(url) +
+    '" target="_blank" rel="noopener noreferrer">' + escapeHTML(label) + icon("external") + '</a>';
+}
+
+function breadcrumb(parts) {
+  return '<div class="breadcrumbs">' + parts.map((part, index) => {
+    if (index === parts.length - 1) return '<span>' + escapeHTML(part.label) + '</span>';
+    return '<button data-route="' + escapeHTML(part.route) + '">' + escapeHTML(part.label) + '</button>' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m9 5 7 7-7 7"/></svg>';
+  }).join("") + '</div>';
+}
+
+function pageHeading(kicker, title, description) {
+  return '<div class="page-heading"><div><div class="eyebrow">' + escapeHTML(kicker) +
+    '</div><h1>' + title + '</h1></div><p>' + escapeHTML(description) + '</p></div>';
+}
+
+function homePage() {
+  return '<section class="page" data-page="home">' +
+    '<div class="wrap home-hero"><div class="home-grid"><div class="home-copy">' +
+      '<div class="eyebrow">A PERSONAL PROJECT SPACE</div>' +
+      '<h1 class="home-title">Made with<br><em>intention.</em></h1>' +
+      '<p><strong>I’m moon.d.flower.</strong> I make websites, experiment with interfaces, and work on projects with <strong>The Forged Flowers.</strong> This is where the people and the projects live.</p>' +
+      '<div class="button-row">' + button("EXPLORE THE PROJECTS", "projects", true) + button("MEET THE TEAM", "team") + '</div>' +
+      '<div class="home-meta"><span>THE FORGED FLOWERS</span><span>PERSONAL PROJECTS</span></div>' +
+    '</div><figure class="home-portrait"><img src="' + ASSET.moonAvatar + '" alt="moon.d.flower profile artwork"><figcaption class="portrait-caption">MOON.D.FLOWER / 001</figcaption></figure></div></div>' +
+    '<div class="wrap quick-grid">' +
+      quickCard("01", "ABOUT", "A little about the person behind the projects.", "about", "about") +
+      quickCard("02", "THE TEAM", "Meet the people in The Forged Flowers.", "people", "team") +
+      quickCard("03", "PROJECTS", "Browse the things being built.", "work", "projects") +
+      quickCard("04", "GALLERY", "Artwork and images from the asset library.", "gallery", "gallery") +
+    '</div>' +
+    '<div class="wrap home-feature"><div><div class="eyebrow">THE PEOPLE BEHIND IT</div><h2>Not just projects.<br><em>People too.</em></h2><p>The Forged Flowers is the team name. The team page keeps everyone's profile in one place, with the profile artwork and links listed on the original team page.</p>' +
+      button("OPEN THE TEAM PAGE", "team") +
+    '</div><div class="feature-image"><img src="' + ASSET.moonBanner + '" alt="Moonflower banner artwork"></div></div>' +
+  '</section>';
+}
+
+function quickCard(number, title, description, symbol, route) {
+  return '<button class="quick-card" data-route="' + route + '"><span class="quick-card-top"><span>' + number +
+    ' / SECTION</span><span class="quick-card-icon">' + (ICON[symbol] || ICON.flower) +
+    '</span></span><span><h2>' + title + '</h2><p>' + description + '</p></span></button>';
+}
+
+function aboutPage() {
+  return '<section class="page page-shell" data-page="about"><div class="wrap">' +
+    pageHeading("A LITTLE CONTEXT", "About <em>Moonflower.</em>", "The short version: I like making things on the internet and figuring out how to make them work better.") +
+    '<div class="prose-grid"><div class="prose-quote">“I’d rather make the thing, try it out, and keep fixing it until it feels right.”</div>' +
+    '<div class="prose-body"><p>I’m <strong>moon.d.flower</strong>. Most of what I work on starts with a simple idea: a page that should feel more like an app, a folder of media that needs to make sense, or a design that could use its own identity.</p>' +
+    '<p>I spend time on the visual side and the code side. That means building layouts, writing HTML and CSS, adding JavaScript interactions, making SVG details, and sorting out the small issues that show up when something is actually used.</p>' +
+    '<p><strong>The Forged Flowers</strong> is my team. This site gives the team its own space instead of making the whole thing only about my projects.</p>' +
+    '<p>Some projects are still being worked on. That’s normal. I’d rather show what exists and keep improving it than pretend everything is finished.</p></div></div>' +
+    '<div class="image-strip"><figure><img src="' + ASSET.moonBanner + '" alt="Moonflower banner"></figure><figure><img src="' + ASSET.moonAvatar + '" alt="Moonflower profile"></figure><figure><img src="' + ASSET.kon + '" alt="Kon icon"></figure></div>' +
+    '<div style="margin-top:45px" class="page-cards">' +
+      '<article class="info-card"><span class="card-number">01 / BUILD</span><h3>Web interfaces</h3><p>Pages, layouts, menus, app-style screens, and the code that connects them.</p></article>' +
+      '<article class="info-card"><span class="card-number">02 / DESIGN</span><h3>Visual details</h3><p>Artwork, profile images, banners, SVG marks, and the little things that give a project its look.</p></article>' +
+      '<article class="info-card"><span class="card-number">03 / LEARN</span><h3>Keep improving</h3><p>Testing, fixing, reorganizing, and learning as each project gets used.</p></article>' +
+    '</div><div class="button-row" style="margin-top:38px">' + button("SEE THE PROJECTS", "projects", true) + button("MEET THE TEAM", "team") + '</div>' +
+  '</div></section>';
+}
+
+function teamPage() {
+  const cards = MEMBERS.map(member => '<button class="team-card" data-route="member/' + member.id + '">' +
+    '<div class="team-cover"><img loading="lazy" src="' + member.banner + '" alt="' + escapeHTML(member.name) + ' banner"></div>' +
+    '<div class="team-content"><img class="team-avatar" loading="lazy" src="' + member.avatar + '" alt="' + escapeHTML(member.name) + ' profile picture">' +
+    '<div class="team-role">' + escapeHTML(member.role.toUpperCase()) + '</div><h3>' + escapeHTML(member.name) + '</h3>' +
+    '<div class="team-handle">' + escapeHTML(member.handle) + '</div><p class="team-bio">' + escapeHTML(member.bio) + '</p>' +
+    '<div class="team-card-foot"><span>VIEW PROFILE</span>' + ICON.arrow + '</div></div></button>').join("");
+  return '<section class="page page-shell" data-page="team"><div class="wrap">' +
+    pageHeading("THE PEOPLE", "The Forged <em>Flowers.</em>", "The team, all in one place. Open a profile to see their artwork, bio, and listed socials.") +
+    '<div class="team-grid">' + cards + '</div>' +
+    '<div class="empty-note" style="margin-top:18px">Profiles and links are based on the team page in the Lumio assets repository. If someone adds a new profile there, this page can be updated to match.</div>' +
+  '</div></section>';
+}
+
+function memberPage(id) {
+  const member = MEMBERS.find(item => item.id === id);
+  if (!member) return notFoundPage();
+  const socials = member.links.length ? member.links.map(link =>
+    '<a class="social-link" href="' + escapeHTML(link.url) + '" target="_blank" rel="noopener noreferrer">' +
+    (ICON[link.icon] || ICON.external) + '<span>' + escapeHTML(link.label) + '</span>' + '</a>'
+  ).join("") : '<div class="empty-note">No public social links are listed for this profile yet.</div>';
+  const index = MEMBERS.indexOf(member);
+  return '<section class="page page-shell" data-page="member">' +
+    '<div class="wrap">' + breadcrumb([{label:"The team",route:"team"},{label:member.name}]) +
+    '<div class="profile-layout"><article class="profile-main">' +
+      '<div class="profile-banner"><img src="' + member.banner + '" alt="' + escapeHTML(member.name) + ' banner"></div>' +
+      '<div class="profile-main-content"><div class="profile-identity"><img class="profile-avatar" src="' + member.avatar + '" alt="' + escapeHTML(member.name) + ' profile picture"></div>' +
+      '<div class="profile-kicker">' + escapeHTML(member.role.toUpperCase()) + '</div>' +
+      '<h1>' + escapeHTML(member.name) + '</h1><div class="profile-handle">' + escapeHTML(member.handle) + '</div>' +
+      '<p class="profile-bio">' + escapeHTML(member.bio) + '</p><div class="profile-links">' + socials + '</div></div></article>' +
+      '<aside class="profile-aside"><div class="eyebrow">MEMBER ' + String(index + 1).padStart(2,"0") + ' / 0' + MEMBERS.length + '</div>' +
+      '<h2>' + escapeHTML(member.name) + '</h2><p>' + escapeHTML(member.note) + '</p>' +
+      '<button class="action" data-route="team">' + icon("back") + ' ALL MEMBERS</button>' +
+      '<button class="action" data-route="contact">CONTACT / CONNECT ' + icon("arrow") + '</button></aside></div></div></section>';
+}
+
+function projectsPage() {
+  const cards = PROJECTS.map(project => '<button class="project-card" style="--tint:' + (project.id === "lumio-os" ? "#8d8bc5" : project.id === "driven" ? "#c17c9e" : "#8ba998") + '" data-route="project/' + project.id + '">' +
+    '<span class="project-card-top"><span>' + project.number + ' / ' + escapeHTML(project.category) + '</span><span class="project-symbol">' + (ICON.work) + '</span></span>' +
+    '<h2>' + escapeHTML(project.name) + '</h2><p>' + escapeHTML(project.description) + '</p>' +
+    '<span class="project-card-foot"><span>' + escapeHTML(project.status) + '</span>' + ICON.arrow + '</span></button>').join("");
+  return '<section class="page page-shell" data-page="projects"><div class="wrap">' +
+    pageHeading("THE WORKSPACE", "Projects & <em>experiments.</em>", "A quick tour of the repositories and the ideas behind them. Open any card for more context and the source repository.") +
+    '<div class="project-grid">' + cards + '</div></div></section>';
+}
+
+function projectPage(id) {
+  const project = PROJECTS.find(item => item.id === id);
+  if (!project) return notFoundPage();
+  return '<section class="page page-shell" data-page="project"><div class="wrap">' +
+    breadcrumb([{label:"Projects",route:"projects"},{label:project.name}]) +
+    '<div class="section-label">' + project.number + ' / ' + escapeHTML(project.category) + '</div>' +
+    '<h1 class="display-title">' + escapeHTML(project.name) + '<br><em>Project notes.</em></h1>' +
+    '<div class="project-detail" style="margin-top:35px"><div class="project-detail-copy">' +
+    project.detail.map(paragraph => '<p>' + escapeHTML(paragraph) + '</p>').join("") +
+    '<div class="detail-meta"><div><small>STATUS</small><strong>' + escapeHTML(project.status) + '</strong></div>' +
+    '<div><small>TYPE</small><strong>' + escapeHTML(project.category) + '</strong></div>' +
+    '<div><small>TOOLS</small><strong>' + escapeHTML(project.tags.join(" · ")) + '</strong></div>' +
+    '<div><small>SOURCE</small><strong>PUBLIC GITHUB REPOSITORY</strong></div></div>' +
+    '<div class="button-row">' + externalLink("OPEN REPOSITORY", project.repo, true) + button("BACK TO PROJECTS", "projects") + '</div>' +
+    '</div><div class="project-detail-art"><img src="' + project.image + '" alt="' + escapeHTML(project.name) + ' artwork"></div></div>' +
+    '</div></section>';
+}
+
+function galleryPage() {
+  const items = GALLERY.map(item => '<figure class="gallery-item"><img loading="lazy" src="' + item.src + '" alt="' + escapeHTML(item.title) + '"><figcaption><span>' + escapeHTML(item.title) + '</span><span>' + escapeHTML(item.type) + '</span></figcaption></figure>').join("");
+  return '<section class="page page-shell" data-page="gallery"><div class="wrap">' +
+    pageHeading("VISUAL FILES", "The asset <em>cabinet.</em>", "A few of the images already in the Lumio assets repository. This is a visual index, not a new copy of the files.") +
+    '<div class="gallery-grid">' + items + '</div>' +
+    '<div class="button-row" style="margin-top:30px">' + externalLink("OPEN ASSET REPOSITORY", "https://github.com/dhisjwhd-svg/lumio-assets", true) + '</div>' +
+  '</div></section>';
+}
+
+let repoCache = null;
+let repoLoading = null;
+async function loadRepositories() {
+  if (repoCache) return repoCache;
+  if (repoLoading) return repoLoading;
+  repoLoading = fetch("https://api.github.com/users/dhisjwhd-svg/repos?sort=updated&per_page=100", {
+    headers: { Accept: "application/vnd.github+json" }
+  }).then(response => {
+    if (!response.ok) throw new Error("GitHub returned " + response.status);
+    return response.json();
+  }).then(data => {
+    const priority = ["LUMIO-OS","lumio-assets","driven","pc-wallpaper-assets-","moonflower"];
+    repoCache = data.filter(repo => !repo.fork).sort((a,b) => {
+      const ai = priority.indexOf(a.name);
+      const bi = priority.indexOf(b.name);
+      return (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi) || new Date(b.updated_at) - new Date(a.updated_at);
+    });
+    return repoCache;
+  }).finally(() => { repoLoading = null; });
+  return repoLoading;
+}
+
+function repositoriesPage() {
+  return '<section class="page page-shell" data-page="repositories"><div class="wrap">' +
+    pageHeading("PUBLIC SOURCE", "Straight from <em>GitHub.</em>", "The live public repository list for dhisjwhd-svg. Open a repository to see its files, commits, and current state.") +
+    '<div class="repo-toolbar"><span class="eyebrow" id="repo-count">PUBLIC REPOSITORIES / LOADING</span><span class="muted" id="repo-status" style="font-size:10px">Connecting to GitHub…</span></div>' +
+    '<div class="repo-grid" id="repo-grid"><div class="repo-state">Loading the public repository list…</div></div>' +
+    '<div class="button-row" style="margin-top:26px">' + externalLink("OPEN GITHUB PROFILE", "https://github.com/dhisjwhd-svg", true) + '</div>' +
+  '</div></section>';
+}
+
+function contactPage() {
+  return '<section class="page page-shell" data-page="contact"><div class="wrap">' +
+    pageHeading("FIND THE WORK", "Places to <em>connect.</em>", "The links below go to the public profiles and project pages. No contact form that goes nowhere.") +
+    '<div class="contact-panel"><div><div class="eyebrow">MOON.D.FLOWER / THE FORGED FLOWERS</div>' +
+    '<h2>Come see<br><em>what’s next.</em></h2>' +
+    '<p>Follow the work, browse the repositories, or check out the team profiles. The projects change as I keep building, so the GitHub profile is the best place to see the latest files.</p>' +
+    '</div><div class="contact-list">' +
+    contactLink("GITHUB PROFILE", "https://github.com/dhisjwhd-svg") +
+    contactLink("TIKTOK / MOON.D.FLOWER", "https://www.tiktok.com/@moon.d.flower") +
+    contactLink("MOONFLOWER REPOSITORY", "https://github.com/dhisjwhd-svg/moonflower") +
+    contactLink("THE FORGED FLOWERS PROFILES", "https://github.com/dhisjwhd-svg/lumio-assets/blob/main/assets/apps/TFF.html") +
+    '</div></div></div></section>';
+}
+
+function contactLink(label, url) {
+  return '<a href="' + escapeHTML(url) + '" target="_blank" rel="noopener noreferrer"><span>' + escapeHTML(label) + '</span>' + ICON.external + '</a>';
+}
+
+function notFoundPage() {
+  return '<section class="page page-shell"><div class="wrap"><div class="eyebrow">404 / NOT FOUND</div><h1 class="display-title" style="margin-top:20px">This page<br><em>isn’t here.</em></h1><p class="lead">That link doesn’t match a page on this site.</p><div class="button-row">' + button("BACK HOME", "home", true) + '</div></div></section>';
+}
+
+const ROUTES = {
+  home: homePage,
+  about: aboutPage,
+  team: teamPage,
+  projects: projectsPage,
+  gallery: galleryPage,
+  repositories: repositoriesPage,
+  contact: contactPage
+};
+
+function parseRoute() {
+  const raw = location.hash.replace(/^#\/?/, "");
+  if (!raw) return { name: "home", id: null };
+  const [name, id] = raw.split("/");
+  if (name === "member" || name === "project") return { name, id: decodeURIComponent(id || "") };
+  return { name: ROUTES[name] ? name : "not-found", id: null };
+}
+
+function renderRoute(route, animate = true) {
+  const current = app.querySelector(".page");
+  const view = route.name === "member" ? memberPage(route.id)
+    : route.name === "project" ? projectPage(route.id)
+    : route.name === "not-found" ? notFoundPage()
+    : (ROUTES[route.name] || notFoundPage)();
+  if (current && animate && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    current.classList.add("page-out");
+    window.setTimeout(() => {
+      app.innerHTML = view;
+      finishRender(route);
+    }, 110);
+  } else {
+    app.innerHTML = view;
+    finishRender(route);
+  }
+}
+
+function finishRender(route) {
+  document.title = route.name === "home" ? "moon.d.flower | The Forged Flowers"
+    : route.name === "member" ? (MEMBERS.find(m => m.id === route.id)?.name || "Member") + " | The Forged Flowers"
+    : route.name === "project" ? (PROJECTS.find(p => p.id === route.id)?.name || "Project") + " | Moonflower"
+    : route.name.charAt(0).toUpperCase() + route.name.slice(1) + " | Moonflower";
+  document.querySelectorAll(".nav-link").forEach(link => {
+    link.classList.toggle("active", link.dataset.route === route.name ||
+      (route.name === "member" && link.dataset.route === "team") ||
+      (route.name === "project" && link.dataset.route === "projects"));
+  });
+  mobilePanel.classList.remove("open");
+  mobileToggle.setAttribute("aria-expanded", "false");
+  progress.style.width = "0";
+  window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  if (route.name === "repositories") populateRepositories();
+}
+
+function navigate(route) {
+  const next = "#" + route;
+  if (location.hash === next) {
+    renderRoute(parseRoute(), false);
+    return;
+  }
+  location.hash = next;
+}
+
+document.addEventListener("click", event => {
+  const target = event.target.closest("[data-route]");
+  if (!target) return;
+  event.preventDefault();
+  navigate(target.dataset.route);
+});
+
+window.addEventListener("hashchange", () => renderRoute(parseRoute()));
+mobileToggle.addEventListener("click", () => {
+  const open = mobilePanel.classList.toggle("open");
+  mobileToggle.setAttribute("aria-expanded", String(open));
+  document.getElementById("menu-icon").innerHTML = open
+    ? '<path d="m6 6 12 12M18 6 6 18"/>'
+    : '<path d="M4 7h16M4 12h16M4 17h16"/>';
+});
+
+window.addEventListener("scroll", () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + "%";
+}, { passive: true });
+
+async function populateRepositories() {
+  const grid = document.getElementById("repo-grid");
+  const count = document.getElementById("repo-count");
+  const status = document.getElementById("repo-status");
+  if (!grid || grid.dataset.loaded === "true") return;
+  try {
+    const repos = await loadRepositories();
+    if (!document.body.contains(grid)) return;
+    count.textContent = "PUBLIC REPOSITORIES / " + repos.length;
+    status.textContent = "LIVE FROM GITHUB";
+    grid.innerHTML = repos.map(repo =>
+      '<a class="repo-card" href="' + escapeHTML(repo.html_url) + '" target="_blank" rel="noopener noreferrer">' +
+      '<span class="eyebrow">REPOSITORY</span><h3>' + escapeHTML(repo.name) + '</h3>' +
+      '<p>' + escapeHTML(repo.description || "A public project from the Moonflower workspace.") + '</p>' +
+      '<span class="repo-foot"><span>' + escapeHTML((repo.language || "PROJECT").toUpperCase()) + '</span><span>OPEN REPOSITORY</span></span></a>'
+    ).join("") || '<div class="repo-state">No public repositories were returned.</div>';
+    grid.dataset.loaded = "true";
+  } catch (error) {
+    if (!document.body.contains(grid)) return;
+    count.textContent = "GITHUB PROFILE";
+    status.textContent = "LIVE LIST UNAVAILABLE";
+    grid.innerHTML = '<div class="repo-state">GitHub did not return the repository list just now. The profile link still works.</div>';
+  }
+}
+
+renderRoute(parseRoute(), false);
 })();
 </script>
 </body>
